@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #000;
+}
+
+.navContainer {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 80%;
+  height: 75px;
+  margin: 2% auto;
+}
+.appLabel,
+.contact,
+.login,
+.cart {
+  flex: 1;
+  font-size: 30px;
+  border: 1px solid #000;
+  text-align: center;
+  height: 65px;
+  padding: 12.5px;
+}
+.cart,
+.contact {
+  flex: 0.4;
+}
+.search {
+  flex: 4;
+  height: 65px;
+  padding: 12.5px 0;
+  border: 1px solid #000;
+}
+
+.login button {
+  height: 40px;
+  width: 80%;
+  cursor: pointer;
+  background-color: red;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 20px;
+}
+.login button i {
+  color: #fff;
+}
+
+.contact {
+  position: relative;
+}
+.dropdown-contact {
+  display: none;
+  position: absolute;
+  left: -50%;
+  top: 105%;
+  width: 200%;
+  font-size: 18px;
+  background-color: #fff;
+  z-index: 5;
+  padding: 12px 5px;
+  box-shadow: 0 0 16px 8px rgba(209, 209, 209, 0.493);
+}
+
+.dropdown-contact p {
+  margin: 2% 0;
+}
+
+.contact:hover .dropdown-contact {
+  display: block;
+}

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Online shop
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{asset('styles/app.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+    <div class="navContainer">
+        <div class="appLabel">
+            <a href="{{path('homepage')}}">Shop</a>
+        </div>
+
+        <div class="search"></div>
+
+        <div class="contact">
+            <p>
+                <i class="fas fa-headphones-alt"></i>
+            </p>
+            <div class="dropdown-contact">
+                <p>
+                    <i class="fas fa-phone"></i>
+                    <a href="tel:111-222-333" title="111-222-333">111-222-333</a>
+                </p>
+                <p>
+                    <i class="fas fa-at"></i>
+                    <a href="mailto:contact@shop.com" title="contact@shop.com">Send mail</a>
+                </p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <a href="" title="Branches">Branches</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="login">
+            <a href="">
+                <button>
+                    <i class="far fa-user"></i>
+                    Login</button>
+            </a>
+        </div>
+
+        <div class="cart">
+            <a href="">
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}{% endblock %}
