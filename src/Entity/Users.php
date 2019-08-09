@@ -34,7 +34,7 @@ class Users
     private $Email;
 
     /**
-     * @ORM\Column(type="string", length=25)
+     * @ORM\Column(type="string", length=40)
      */
     private $ResetPass;
 
@@ -42,6 +42,12 @@ class Users
      * @ORM\OneToMany(targetEntity="App\Entity\Deals", mappedBy="customer")
      */
     private $deals;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\UserDetails", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Details;
 
     public function __construct()
     {
@@ -128,6 +134,18 @@ class Users
                 $deal->setCustomer(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDetails(): ?UserDetails
+    {
+        return $this->Details;
+    }
+
+    public function setDetails(UserDetails $Details): self
+    {
+        $this->Details = $Details;
 
         return $this;
     }

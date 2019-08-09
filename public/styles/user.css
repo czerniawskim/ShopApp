@@ -13,3 +13,56 @@
   text-align: center;
   font-size: 45px;
 }
+.formContainer {
+  width: 75%;
+  margin: 2% auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+
+input {
+  width: 75%;
+  border: 1px solid #b3b0b0;
+  border-radius: 10px;
+  height: 45px;
+  font-size: 20px;
+  margin: 2.5% auto;
+  padding: 10px;
+  outline: none;
+}
+
+button {
+  width: 50%;
+  border: 1px solid #b3b0b0;
+  border-radius: 10px;
+  height: 45px;
+  font-size: 20px;
+  margin: 1.5% auto;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+p:first-of-type {
+  font-size: 45px;
+  text-align: center;
+  cursor: default;
+}
+
+p:last-of-type {
+  font-size: 20px;
+  margin: 2% auto;
+  text-align: center;
+}
+.formContainer a {
+  color: red;
+}
+
+.alert {
+  width: 50%;
+  margin: auto;
+}

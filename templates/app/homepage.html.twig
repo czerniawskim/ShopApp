@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+    {{parent()}}
     <link href="{{asset('styles/app.css')}}" rel="stylesheet">
 {% endblock %}
 

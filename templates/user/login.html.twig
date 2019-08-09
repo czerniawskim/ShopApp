@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+    {{parent()}}
     <link href="{{asset('styles/user.css')}}" rel="stylesheet">
 {% endblock %}
 
@@ -15,6 +16,8 @@
 
 {% block body %}
     <div class="formContainer">
+        <p>Login form</p>
+
         {{form_start(login)}}
         {{form_widget(login.Username)}}
         {{form_widget(login.Password)}}
@@ -22,10 +25,10 @@
         {{form_end(login)}}
 
         <p>
-            <a href="">First time? Register</a>
+            <a href="{{path('register')}}">First time? Register</a>
         </p>
 
-        {% if app.session.get('user') %}
+        {% if app.session.get('user') is null %}
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert alert-{{label}}">

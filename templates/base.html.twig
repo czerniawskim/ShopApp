@@ -5,7 +5,9 @@
         <title>
             {% block title %}{% endblock %}
         </title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+            <link href="{{asset('styles/alerts.css')}}" rel="stylesheet">
+        {% endblock %}
     </head>
     <body>
         {% block navbar %}{% endblock %}
