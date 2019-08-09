@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Login
+{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{asset('styles/user.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+    <div class="nav">
+        <a href="{{path('homepage')}}">Shop</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="formContainer">
+        {{form_start(login)}}
+        {{form_widget(login.Username)}}
+        {{form_widget(login.Password)}}
+        {{form_widget(login.Login)}}
+        {{form_end(login)}}
+
+        <p>
+            <a href="">First time? Register</a>
+        </p>
+
+        {% if app.session.get('user') %}
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{label}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #000;
+}
+
+.nav {
+  width: 80%;
+  height: 55px;
+  margin: 2% auto;
+  text-align: center;
+  font-size: 45px;
+}
