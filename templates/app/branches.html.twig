@@ -10,55 +10,69 @@
             {% for key, branch in branches %}
                 <h2>{{key}}</h2>
                 {% for elem in branch %}
-                    <p>{{elem}}</p>
+                    <p>
+                        <i class="fas fa-map-marker-alt"></i>
+                        {{elem}}</p>
                 {% endfor %}
             {% endfor %}
         </div>
         <div class="hours">
-
+            {% set status = '' %}
             {% for key, hour in hours %}
-                {% if "now"|date('l') == key %}
-                    {% for h in hour %}
-                        {% if loop.first %}
-                            {% if "now"|date('G:i') < h|date('G:i') %}
-                                {% set earlier = true %}
-                            {% else %}
-                                {% set earlier = false %}
+                {% if key == "now"|date('l') %}
+                    {% if key == 'Sunday' %}
+                        {% set status = 'Closed' %}
+                    {% else %}
+                        {% for h in hour %}
+                            {% if loop.first %}
+                                {% if "now"|date('G:i') < h %}
+                                    {% set earlier = true %}
+                                {% else %}
+                                    {% set earlier = false %}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                        {% if loop.last %}
-                            {% if "now"|date('G:i') <  h|date('G:i') %}
-                                {% set later = false %}
-                            {% else %}
-                                {% set later = true %}
+                            {% if loop.last %}
+                                {% if "now"|date('G:i') <  h %}
+                                    {% set later = false %}
+                                {% else %}
+                                    {% set later = true %}
+                                {% endif %}
                             {% endif %}
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
 
-            {% if earlier == false and later == false %}
-                {% set cond = Open %}
-            {% else %}
-                {% set cond = Closed %}
+            {% if earlier is defined and later is defined %}
+                {% if earlier == false and later == false %}
+                    {% set status = 'Open' %}
+                {% else %}
+                    {% set status = 'Closed' %}
+                {% endif %}
             {% endif %}
 
-            <p class="{{cond}}">
+            <p class="{{status}}">
                 <i class="far fa-clock"></i>
-                {{cond}}
+                {{status}}
             </p>
 
             {% for key, hour in hours %}
-                <p>{{key}}</p>
                 <p>
-                    {% for h in hour %}
-                        {{h}}
-                        {% if loop.first %}
-                            -
+                    <span>{{key}}</span>
+                    <span>
+                        {% if loop.last %}
+                            Closed
+                        {% else %}
+                            {% for h in hour %}
+                                {{h}}
+                                {% if loop.first %}
+                                    -
+                                {% endif %}
+                            {% endfor %}
                         {% endif %}
-                    {% endfor %}
+                    </span>
                 </p>
-            </p>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>{% endblock %}
+{% endblock %}

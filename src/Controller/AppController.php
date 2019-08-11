@@ -68,9 +68,11 @@ class AppController extends AbstractController
             'Saturday'=>[
                 '10:00',
                 '17:00'
+            ],
+            'Sunday'=>[
+                'Closed'
             ]
         ];
-
 
         return $this->render('app/branches.html.twig', [
             'branches'=>$branches,

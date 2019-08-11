@@ -78,3 +78,47 @@
 .contact:hover .dropdown-contact {
   display: block;
 }
+
+.orgContainer {
+  width: 80%;
+  margin: 2% auto;
+  display: flex;
+}
+.branches,
+.hours {
+  flex: 1;
+}
+.branches h2 {
+  font-size: 30px;
+  padding: 5px 15px;
+}
+.branches p {
+  padding: 2px 25px;
+}
+.branches p i {
+  color: red;
+}
+.hours p:first-of-type {
+  font-size: 20px;
+  padding: 8px 20px;
+  display: block;
+}
+.Closed {
+  color: red;
+}
+.Open {
+  color: green;
+}
+
+.hours {
+  display: flex;
+  flex-direction: column;
+}
+
+.hours p {
+  display: flex;
+  padding: 3px 15px;
+}
+.hours p span {
+  flex: 1;
+}
