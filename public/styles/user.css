@@ -59,10 +59,23 @@ p:last-of-type {
   text-align: center;
 }
 .formContainer a {
+  display: block;
+  margin: 2% auto;
   color: red;
 }
 
 .alert {
   width: 50%;
   margin: auto;
+}
+
+.resetContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 1% auto;
+}
+.resetContainer h3 {
+  text-align: center;
+  font-size: 35px;
 }

@@ -22,7 +22,7 @@ class UsersRepository extends ServiceEntityRepository
     public function checkExsistence($value)
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.Email = :mail OR u.Username LIKE :usr')
+            ->andWhere('u.Email = :mail OR u.Username = :usr')
             ->setParameter('mail', $value)
             ->setParameter('usr', '5'.$value.'%')
             ->getQuery()

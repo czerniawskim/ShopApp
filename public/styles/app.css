@@ -44,14 +44,20 @@
   height: 40px;
   width: 80%;
   cursor: pointer;
-  background-color: red;
   border: none;
   border-radius: 10px;
-  color: #fff;
   font-size: 20px;
 }
 .login button i,
 .logout button i {
+  color: #fff;
+}
+.login button {
+  color: #fff;
+  background-color: green;
+}
+.logout button {
+  background-color: red;
   color: #fff;
 }
 
@@ -75,6 +81,16 @@
   margin: 2% 0;
 }
 
+.fa-map-marker-alt {
+  color: red;
+}
+.fa-at {
+  color: blue;
+}
+.fa-phone {
+  color: green;
+}
+
 .contact:hover .dropdown-contact {
   display: block;
 }
@@ -94,9 +110,6 @@
 }
 .branches p {
   padding: 2px 25px;
-}
-.branches p i {
-  color: red;
 }
 .hours p:first-of-type {
   font-size: 20px;

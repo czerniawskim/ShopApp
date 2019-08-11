@@ -1,0 +1,22 @@
+{% extends "user/login.html.twig" %}
+
+
+{% block title %}New password
+{% endblock %}
+
+{% block body %}
+    <div class="resetContainer">
+        {{form_start(new)}}
+        {{form_widget(new.Passwords.first)}}
+        {{form_widget(new.Passwords.second)}}
+        {{form_widget(new.Submit)}}
+        {{form_end(new)}}
+        {% for label,messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{label}}">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endblock %}

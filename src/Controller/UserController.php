@@ -189,4 +189,116 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('homepage', []);
     }
+
+    /**
+     * @Route("/u/reset", name="resetPass")
+     */
+    public function reset(Request $request, UsersRepository $uR, \Swift_Mailer $mailer)
+    {
+        $ask=$this->createFormBuilder()
+        ->add('data', TextType::class, [
+            'attr'=>[
+                'class'=>'resetInp',
+                'placeholder'=>'Insert username or e-mail'
+            ]
+        ])
+        ->add('Submit', SubmitType::class, [
+            'attr'=>[
+                'class'=>'resetSub'
+            ]
+        ])
+        ->getForm();
+        $ask->handleRequest($request);
+        if($ask->isSubmitted() && $ask->isValid())
+        {
+            $data=$ask->getData()['data'];
+            $exist=$uR->checkExsistence($data);
+            if($exist)
+            {
+                $hash=$exist[0]->getResetPass();
+                $message=(new \Swift_Message('Password reset'))
+                ->setFrom('Gloudy99@gmail.com')
+                ->setTo($exist[0]->getEmail())
+                ->setBody(
+                    $this->renderView(
+                        'resetMail.html.twig',
+                        ['hash'=>$hash,'user'=>$exist[0]->getUsername()]
+                    ),
+                    'text/html'
+                );
+                $mailer->send($message);
+                $this->addFlash('success','Reset link has been sent on your e-mail');
+            }
+            else
+            {
+                $this->addFlash('danger','There is no such username/e-mail');
+            }
+        }
+        return $this->render('user/reset.html.twig', [
+            'ask'=>$ask->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/{hash}/new-password", name="newPass")
+     */
+    public function newPass($hash, UsersRepository $uR, EntityManagerInterface $em, Request $request)
+    {
+        $reset=$uR->findBy(['ResetPass'=>$hash])[0];
+        if(!$reset)
+        {
+            $this->addFlash('warning', 'There is such no hash');
+            return $this->redirectToRoute('userLogin', []);
+        }
+
+        $new=$this->createFormBuilder()
+        ->add('Passwords', RepeatedType::class, [
+            'type' => PasswordType::class,
+            'first_options'  => ['attr' => ['placeholder'=>'New password']],
+            'second_options' => ['attr' => ['placeholder'=>'Repeat new password']],
+            'options' => ['attr' => ['class' => 'newInp']]
+        ])
+        ->add('Submit', SubmitType::class,[
+            'attr'=>[
+                'class'=>'newSub'
+            ]
+        ])
+        ->getForm();
+        $new->handleRequest($request);
+        if($new->isSubmitted() && $new->isValid())
+        {
+            $data=$new->getData()['Passwords'];
+            if($data != $reset->getPassword())
+            {
+                $reset->setPassword($data);
+                $hash=md5(uniqid());
+                $taken=$uR->findBy(['ResetPass'=>$hash]);
+                if($taken)
+                {
+                    $temp = false;
+                    while($temp == false)
+                    {
+                        $hash=md5(uniqid());
+                        $taken=$uR->findBy(['ResetPass'=>$hash]);
+                        if(!$taken)
+                        {
+                            $temp = true;
+                        }
+                    }
+                }
+                $reset->setResetPass($hash);
+                $em->flush();
+
+                $this->addFlash('success', 'Your password has been changed');
+                return $this->redirectToRoute('login', []);
+            }
+            else
+            {
+                $this->addFlash('warning', 'New password can not be same as old');
+            }
+        }
+        return $this->render('user/newPass.html.twig', [
+            'new'=>$new->createView()
+        ]);
+    }
 }
