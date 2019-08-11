@@ -23,33 +23,51 @@
             <div class="dropdown-contact">
                 <p>
                     <i class="fas fa-phone"></i>
-                    <a href="tel:111-222-333" title="111-222-333">111-222-333</a>
+                    <a href="tel:111-222-333" target="_blank" title="111-222-333">111-222-333</a>
                 </p>
                 <p>
                     <i class="fas fa-at"></i>
-                    <a href="mailto:contact@shop.com" title="contact@shop.com">Send mail</a>
+                    <a href="mailto:contact@shop.com" target="_blank" title="contact@shop.com">Send mail</a>
                 </p>
                 <p>
                     <i class="fas fa-map-marker-alt"></i>
-                    <a href="" title="Branches">Branches</a>
+                    <a href="{{path('branches')}}" title="Branches">Branches</a>
                 </p>
             </div>
         </div>
 
-        <div class="login">
-            <a href="{{path('login')}}">
-                <button>
-                    <i class="far fa-user"></i>
-                    Login</button>
-            </a>
-        </div>
+        {% if app.session.get('user') is null %}
+            <div class="login">
+                <a href="{{path('login')}}">
+                    <button>
+                        <i class="far fa-user"></i>
+                        Login</button>
+                </a>
+            </div>
+        {% else %}
+            <div class="logout">
+                <a href="{{path('logout')}}">
+                    <button title="{{app.session.get('user').Username}}">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout</button>
+                </a>
+            </div>
+        {% endif %}
 
         <div class="cart">
             <a href="">
                 <i class="fas fa-shopping-cart"></i>
+                {# {% if counter > 0 %}
+                                                    <div class="counter" id="count">{{counter}}</div>
+                                                {% endif %} #}
             </a>
         </div>
     </div>
 {% endblock %}
 
 {% block body %}{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    {# <script src="{{asset('js/cart.js')}}"></script> #}
+{% endblock %}

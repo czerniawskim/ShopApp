@@ -134,7 +134,7 @@ class UserController extends AbstractController
             $exist=$uR->findBy(['Username'=>$usrname]);
             $taken=$uR->findBy(['Username'=>$mail]);
 
-            if(!$exist && !$taken)
+            if(!$exist && !$taken && strpos($mail, '@') !== false)
             {
                 $details=new UserDetails();
                 $details->setJoinDate(new \DateTime());
@@ -158,7 +158,7 @@ class UserController extends AbstractController
             }
             else
             {
-                $this->addFlash('danger', 'This e-mail or username is already taken');
+                $this->addFlash('danger', 'This e-mail/username is already taken or e-mail is not containing `@` character');
             }
         }
         else if($register->isSubmitted() && !$register->isValid())

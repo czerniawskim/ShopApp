@@ -1,0 +1,64 @@
+{% extends "app/homepage.html.twig" %}
+
+
+{% block title %}Branches
+{% endblock %}
+
+{% block body %}
+    <div class="orgContainer">
+        <div class='branches'>
+            {% for key, branch in branches %}
+                <h2>{{key}}</h2>
+                {% for elem in branch %}
+                    <p>{{elem}}</p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <div class="hours">
+
+            {% for key, hour in hours %}
+                {% if "now"|date('l') == key %}
+                    {% for h in hour %}
+                        {% if loop.first %}
+                            {% if "now"|date('G:i') < h|date('G:i') %}
+                                {% set earlier = true %}
+                            {% else %}
+                                {% set earlier = false %}
+                            {% endif %}
+                        {% endif %}
+                        {% if loop.last %}
+                            {% if "now"|date('G:i') <  h|date('G:i') %}
+                                {% set later = false %}
+                            {% else %}
+                                {% set later = true %}
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+
+            {% if earlier == false and later == false %}
+                {% set cond = Open %}
+            {% else %}
+                {% set cond = Closed %}
+            {% endif %}
+
+            <p class="{{cond}}">
+                <i class="far fa-clock"></i>
+                {{cond}}
+            </p>
+
+            {% for key, hour in hours %}
+                <p>{{key}}</p>
+                <p>
+                    {% for h in hour %}
+                        {{h}}
+                        {% if loop.first %}
+                            -
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </p>
+        {% endfor %}
+    </div>
+</div>{% endblock %}
