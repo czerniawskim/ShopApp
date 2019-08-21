@@ -1,0 +1,17 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Creator
+{% endblock %}
+
+{% block body %}
+    <main class="new">
+        <p class="link-back">
+            <a href="{{path('tags')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+        </p>
+    </main>
+{% endblock %}
