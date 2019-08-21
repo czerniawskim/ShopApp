@@ -66,7 +66,7 @@ class AdminController extends AbstractController
             $data=$new->getData();
 
             $category = new Categories();
-            $category->setName($data['Name']);
+            $category->setName(strtolower($data['Name']));
             foreach($data['Tags'] as $tag)
             {
                 $category->addTag($tag);
@@ -151,7 +151,7 @@ class AdminController extends AbstractController
                 }
             }
 
-            $product->setName($data['Name']);
+            $product->setName(strtolower($data['Name']));
             $product->setPrice($data['Price']);
             $product->setDescription($data['Description']);
             $product->setGalleryLink($data['Link']);
@@ -200,7 +200,7 @@ class AdminController extends AbstractController
             $name=$new->getData()['Name'];
 
             $tag = new Tags();
-            $tag->setName($name);
+            $tag->setName(strtolower($name));
 
             $em->persist($tag);
             $em->flush();

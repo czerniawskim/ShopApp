@@ -3,10 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\HttpFoundation\Request;
 use App\Form\SearchType;
 use App\Repository\ProductsRepository;
 
@@ -15,13 +15,15 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage()
+    public function homepage(Request $request)
     {
         $search = $this->createForm(SearchType::class);
 
+        $search->handleRequest($request);
         if($search->isSubmitted() && $search->isValid())
         {
-            return $this->redirectToRoute('search', ['query'=>$data]);
+            $data=$search->getData()['Query'];
+            return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
         }
 
         return $this->render('app/homepage.html.twig', [
@@ -88,13 +90,15 @@ class AppController extends AbstractController
     /**
      * @Route("/search/{query}", name="search")
      */
-    public function search($query, ProductsRepository $pR)
+    public function search($query, ProductsRepository $pR, Request $request)
     {
         $search = $this->createForm(SearchType::class);
 
+        $search->handleRequest($request);
         if($search->isSubmitted() && $search->isValid())
         {
-            return $this->redirectToRoute('search', ['query'=>$data]);
+            $data=$search->getData()['Query'];
+            return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
         }
 
         $results=$pR->findBy(['Name'=>$query]);
@@ -103,5 +107,13 @@ class AppController extends AbstractController
             'results'=>$results,
             'search'=>$search->createView()
         ]);
+    }
+
+    /**
+     * @Route("/cart", name="cart")
+     */
+    public function cart()
+    {
+        return $this->render('app/cart.html.twig', []);
     }
 }
