@@ -1,0 +1,31 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Deals
+{% endblock %}
+
+{% block body %}
+    <main class="deals">
+        <p class="link-back">
+            <a href="{{path('dash')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back</a>
+        </p>
+
+        {% for deal in deals %}
+            <section class="item">
+                <p class="id">{{deal.id}}</p>
+                <p class="date" title="{{deal.doneAt|date('H:i:s')}}">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{deal.doneAt|date('M d, Y')}}
+                </p>
+                <p class="customer">
+                    <i class="fas fa-user"></i>
+                    {{deal.Customer.Username}}
+                </p>
+                <p class="items"></p>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpFoundation\Request;
 use App\Repository\UsersRepository;
 use App\Entity\Users;
-use App\Entity\UserDetails;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -136,18 +135,11 @@ class UserController extends AbstractController
 
             if(!$exist && !$taken && strpos($mail, '@') !== false)
             {
-                $details=new UserDetails();
-                $details->setJoinDate(new \DateTime());
-
-                $em->persist($details);
-                $em->flush();
-
                 $user=new Users();
                 $user->setUsername($data['Username']);
                 $user->setPassword($data['Password']);
                 $user->setEmail($data['Email']);
                 $user->setResetPass(md5(uniqid()));
-                $user->setDetails($details);
 
                 $em->persist($user);
                 $em->flush();

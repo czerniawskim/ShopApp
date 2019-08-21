@@ -4,6 +4,11 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\SearchType;
+use App\Repository\ProductsRepository;
 
 class AppController extends AbstractController
 {
@@ -12,16 +17,16 @@ class AppController extends AbstractController
      */
     public function homepage()
     {
-        return $this->render('app/homepage.html.twig', []);
-    }
+        $search = $this->createForm(SearchType::class);
 
-    /**
-     * @Route("/contact", name="contact")
-     */
-    public function contact()
-    {
+        if($search->isSubmitted() && $search->isValid())
+        {
+            return $this->redirectToRoute('search', ['query'=>$data]);
+        }
 
-        return $this->render('app/contact.html.twig', []);
+        return $this->render('app/homepage.html.twig', [
+            'search'=>$search->createView()
+        ]);
     }
 
     /**
@@ -77,6 +82,26 @@ class AppController extends AbstractController
         return $this->render('app/branches.html.twig', [
             'branches'=>$branches,
             'hours'=>$openH
+        ]);
+    }
+
+    /**
+     * @Route("/search/{query}", name="search")
+     */
+    public function search($query, ProductsRepository $pR)
+    {
+        $search = $this->createForm(SearchType::class);
+
+        if($search->isSubmitted() && $search->isValid())
+        {
+            return $this->redirectToRoute('search', ['query'=>$data]);
+        }
+
+        $results=$pR->findBy(['Name'=>$query]);
+        
+        return $this->render('app/search.html.twig', [
+            'results'=>$results,
+            'search'=>$search->createView()
         ]);
     }
 }

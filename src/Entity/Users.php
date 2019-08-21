@@ -43,12 +43,6 @@ class Users
      */
     private $deals;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\UserDetails", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Details;
-
     public function __construct()
     {
         $this->deals = new ArrayCollection();
@@ -134,18 +128,6 @@ class Users
                 $deal->setCustomer(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getDetails(): ?UserDetails
-    {
-        return $this->Details;
-    }
-
-    public function setDetails(UserDetails $Details): self
-    {
-        $this->Details = $Details;
 
         return $this;
     }

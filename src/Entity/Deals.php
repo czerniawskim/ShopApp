@@ -17,7 +17,7 @@ class Deals
     private $id;
 
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="array")
      */
     private $prods;
 

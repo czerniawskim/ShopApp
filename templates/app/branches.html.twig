@@ -18,37 +18,38 @@
         </div>
         <div class="hours">
             {% set status = '' %}
-            {% for key, hour in hours %}
-                {% if key == "now"|date('l') %}
-                    {% if key == 'Sunday' %}
-                        {% set status = 'Closed' %}
-                    {% else %}
-                        {% for h in hour %}
+            {% set earlier = true %}
+            {% set later = true %}
+
+            {% for key, hours in hours %}
+                {% if "now"|date('l') == key %}
+                    {% if key != "Sunday" %}
+                        {% for hour in hours %}
                             {% if loop.first %}
-                                {% if "now"|date('G:i') < h %}
+                                {% if "now"|date('H:i:s') < hour|date('H:i:s') %}
                                     {% set earlier = true %}
                                 {% else %}
                                     {% set earlier = false %}
                                 {% endif %}
                             {% endif %}
                             {% if loop.last %}
-                                {% if "now"|date('G:i') <  h %}
+                                {% if "now"|date('H:i:s') < hour|date('H:i:s') %}
                                     {% set later = false %}
                                 {% else %}
                                     {% set later = true %}
                                 {% endif %}
                             {% endif %}
                         {% endfor %}
+                    {% else %}
+                        {% set status = 'Closed' %}
                     {% endif %}
                 {% endif %}
             {% endfor %}
 
-            {% if earlier is defined and later is defined %}
-                {% if earlier == false and later == false %}
-                    {% set status = 'Open' %}
-                {% else %}
-                    {% set status = 'Closed' %}
-                {% endif %}
+            {% if earlier == false and later == false %}
+                {% set status = 'Open' %}
+            {% else %}
+                {% set status = 'Closed' %}
             {% endif %}
 
             <p class="{{status}}">

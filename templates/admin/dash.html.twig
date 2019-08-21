@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard
+{% endblock %}
+
+{% block stylesheets %}
+    {{parent()}}
+    <link href="{{asset('styles/admin.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <main class="dash">
+        <p>
+            <a href="{{path('categories')}}">
+                <button>Categories</button>
+            </a>
+        </p>
+        <p>
+            <a href="{{path('products')}}">
+                <button>Products</button>
+            </a>
+        </p>
+        <p>
+            <a href="{{path('tags')}}">
+                <button>Tags</button>
+            </a>
+        </p>
+        <p>
+            <a href="{{path('deals')}}">
+                <button>Deals</button>
+            </a>
+        </p>
+    </main>
+{% endblock %}

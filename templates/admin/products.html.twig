@@ -1,0 +1,35 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Products
+{% endblock %}
+
+{% block body %}
+    <main class="products">
+        <p class="link-back">
+            <a href="{{path('dash')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back</a>
+        </p>
+        <p>
+            <a href="">
+                <button>
+                    <i class="fas fa-plus"></i>
+                    Create new product</button>
+            </a>
+        </p>
+        {% for product in products %}
+            <section class="item">
+                <p class="name">{{product.Name}}</p>
+                <p class="price">
+                    <i class="fas fa-dollar-sign"></i>
+                    {{product.Price}}
+                </p>
+                <p class="description">
+                    <i class="fas fa-question-circle" title="{{product.Description}}"></i>
+                </p>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

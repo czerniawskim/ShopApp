@@ -1,0 +1,28 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Tags
+{% endblock %}
+
+{% block body %}
+    <main class="tags">
+        <p class="link-back">
+            <a href="{{path('dash')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back</a>
+        </p>
+        <p>
+            <a href="">
+                <button>
+                    <i class="fas fa-plus"></i>
+                    Create new tag</button>
+            </a>
+        </p>
+        {% for tag in tags %}
+            <section class="item">
+                <p class="name">{{tag.Name}}</p>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

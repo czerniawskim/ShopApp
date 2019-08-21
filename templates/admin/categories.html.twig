@@ -1,0 +1,33 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Categories
+{% endblock %}
+
+{% block body %}
+    <main class="categories">
+        <p class="link-back">
+            <a href="{{path('dash')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back</a>
+        </p>
+        <p>
+            <a href="">
+                <button>
+                    <i class="fas fa-plus"></i>
+                    Create new category</button>
+            </a>
+        </p>
+        {% for category in categories %}
+            <section class="item">
+                <p class="name">{{category.Name}}</p>
+                <p class="tags">
+                    {% for tag in category.Tags %}
+                        <span>{{tag}}</span>
+                    {% endfor %}
+                </p>
+            </section>
+        {% endfor %}
+    </main>
+{% endblock %}

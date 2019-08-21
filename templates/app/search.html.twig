@@ -1,0 +1,31 @@
+{% extends "app/homepage.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Search result
+{% endblock %}
+
+{% block body %}
+    {% if results is not empty %}
+        <main class="result">
+            <h3>Found
+                {{results|length}}
+                results</h3>
+            {% for result in results %}
+                <section class="item">
+                    <div class="image">
+                        <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ result.image)}}"/>
+                    </div>
+                    <div class="name">{{result.Name}}</div>
+                    <div class="price">
+                        <i class="fas fa-dollar-sign"></i>
+                        {{result.Price}}</div>
+                </section>
+            {% endfor %}
+        </main>
+    {% else %}
+        <main class="error">
+            <h2>Oops... Looks like we are not having that you are looking for...</h2>
+        </main>
+    {% endif %}
+{% endblock %}

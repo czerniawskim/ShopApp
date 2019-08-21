@@ -14,7 +14,12 @@
             <a href="{{path('homepage')}}">Shop</a>
         </div>
 
-        <div class="search"></div>
+        <div class="search">
+            {{form_start(search)}}
+            {{form_widget(search.Query)}}
+            {{form_widget(search.Search)}}
+            {{form_end(search)}}
+        </div>
 
         <div class="contact">
             <p>
@@ -57,17 +62,9 @@
         <div class="cart">
             <a href="">
                 <i class="fas fa-shopping-cart"></i>
-                {# {% if counter > 0 %}
-                                                    <div class="counter" id="count">{{counter}}</div>
-                                                {% endif %} #}
             </a>
         </div>
     </div>
 {% endblock %}
 
 {% block body %}{% endblock %}
-
-{% block javascripts %}
-    {{parent()}}
-    {# <script src="{{asset('js/cart.js')}}"></script> #}
-{% endblock %}

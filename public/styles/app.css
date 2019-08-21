@@ -10,11 +10,10 @@
 
 .navContainer {
   display: flex;
-  justify-content: center;
-  align-content: center;
   width: 80%;
   height: 75px;
   margin: 2% auto;
+  box-shadow: 0 0 5px 2px lightgray;
 }
 .appLabel,
 .contact,
@@ -23,20 +22,13 @@
 .cart {
   flex: 1;
   font-size: 30px;
-  border: 1px solid #000;
   text-align: center;
-  height: 65px;
-  padding: 12.5px;
+  margin: 15px 0;
+  height: 45px;
 }
 .cart,
 .contact {
   flex: 0.4;
-}
-.search {
-  flex: 4;
-  height: 65px;
-  padding: 12.5px 0;
-  border: 1px solid #000;
 }
 
 .login button,
@@ -47,6 +39,7 @@
   border: none;
   border-radius: 10px;
   font-size: 20px;
+  outline: none;
 }
 .login button i,
 .logout button i {
@@ -95,6 +88,33 @@
   display: block;
 }
 
+.search {
+  padding: 5px 2px;
+  flex: 4;
+  height: 55px;
+  margin: 10px 0;
+}
+.search input {
+  width: 80%;
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 20px;
+  padding: 5px;
+  border: solid 1px #000;
+}
+.search button {
+  height: 45px;
+  border-radius: 5px;
+  outline: none;
+  width: 18%;
+  border: 1px solid red;
+  font-size: 20px;
+  color: red;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .orgContainer {
   width: 80%;
   margin: 2% auto;
@@ -103,6 +123,7 @@
 .branches,
 .hours {
   flex: 1;
+  cursor: default;
 }
 .branches h2 {
   font-size: 30px;
@@ -110,6 +131,7 @@
 }
 .branches p {
   padding: 2px 25px;
+  color: rgb(100, 100, 100);
 }
 .hours p:first-of-type {
   font-size: 20px;
@@ -134,4 +156,57 @@
 }
 .hours p span {
   flex: 1;
+}
+
+.contactCont {
+  width: 80%;
+  margin: 2% auto;
+  display: flex;
+  flex-direction: column;
+}
+.def {
+  text-align: center;
+  display: flex;
+  font-size: 35px;
+}
+.def p {
+  flex: 1;
+}
+.form {
+  width: 80%;
+  margin: auto;
+}
+.form form {
+  width: 85%;
+  margin: 5% auto;
+  display: flex;
+  flex-direction: column;
+}
+.form form textarea {
+  width: 90%;
+  margin: 2% auto;
+  padding: 8px;
+  outline: none;
+  height: 250px;
+  resize: none;
+}
+.form form button {
+  width: 50%;
+  margin: auto;
+  height: 35px;
+  outline: none;
+  cursor: pointer;
+}
+
+main.error {
+  width: 75%;
+  height: 200px;
+  margin: 2% auto;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+.error h2 {
+  display: inline-block;
+  height: 40px;
 }

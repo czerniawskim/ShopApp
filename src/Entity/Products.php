@@ -36,6 +36,11 @@ class Products
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="string", length=750, nullable=true)
+     */
+    private $galleryLink;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,6 +90,18 @@ class Products
     public function setImage($image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getGalleryLink(): ?string
+    {
+        return $this->galleryLink;
+    }
+
+    public function setGalleryLink(?string $galleryLink): self
+    {
+        $this->galleryLink = $galleryLink;
 
         return $this;
     }

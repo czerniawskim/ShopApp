@@ -7,7 +7,14 @@
         </title>
         {% block stylesheets %}
             <link href="{{asset('styles/alerts.css')}}" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
         {% endblock %}
+        <style>
+            .appLabel a,
+            .dash button {
+                font-family: "Indie Flower", cursive;
+            }
+        </style>
     </head>
     <body>
         {% block navbar %}{% endblock %}
