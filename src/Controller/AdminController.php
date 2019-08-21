@@ -52,7 +52,9 @@ class AdminController extends AbstractController
         ->add('Name', TextType::class, ['attr'=>['placeholder'=>'Category name']])
         ->add('Tags', EntityType::class, [
             'class'=>Tags::class,
-            'choice_label'=>'Name'
+            'choice_label'=>'Name',
+            'expanded'=>true,
+            'multiple'=>true
         ])
         ->add('Proceed', SubmitType::class)
         ->getForm();
@@ -105,14 +107,18 @@ class AdminController extends AbstractController
         ->add('Price', NumberType::class, ['attr'=>['placeholder'=>'0']])
         ->add('Description', TextareaType::class, ['attr'=>['placeholder'=>'Product description'], 'required'=>false])
         ->add('Link', TextType::class, ['attr'=>['placeholder'=>'Product gallery'], 'required'=>false])
+        ->add('Category', EntityType::class,[
+            'class'=>Categories::class,
+            'choice_label'=>'Name'
+        ])
         ->add('Img', FileType::class, [
             'constraints' => [
                 new File([
                     'maxSize' => '5120k',
                     'mimeTypes' => [
-                        'application/jpg',
-                        'application/jpeg',
-                        'application/png',
+                        'image/jpg',
+                        'image/jpeg',
+                        'image/png',
                     ],
                     'mimeTypesMessage' => 'Please upload a valid image file',
                 ])
@@ -131,11 +137,11 @@ class AdminController extends AbstractController
 
             if($data['Img'])
             {
-                $image = $product->getId().'-'.uniqid().$data['Img']->guessExtension();
+                $image = md5(uniqid()).$data['Img']->guessExtension();
             
                 try{
                     $data['Img']->move(
-                        $this->getParameter('prodsImgs'),
+                        'prodsImgs',
                         $image
                     );
                 }
@@ -150,6 +156,7 @@ class AdminController extends AbstractController
             $product->setDescription($data['Description']);
             $product->setGalleryLink($data['Link']);
             $product->setImage($image);
+            $product->setCategory($data['Category']);
 
             $em->persist($product);
             $em->flush();

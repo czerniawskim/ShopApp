@@ -21,13 +21,16 @@
         </p>
         {% for product in products %}
             <section class="item">
+                <p class="image">
+                    <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ product.image)}}"/>
+                </p>
                 <p class="name">{{product.Name}}</p>
                 <p class="price">
                     <i class="fas fa-dollar-sign"></i>
                     {{product.Price}}
                 </p>
                 <p class="description">
-                    <i class="fas fa-question-circle" title="{{product.Description}}"></i>
+                    <i class="fas fa-question-circle" {% if product.Description is not null %} title="{{product.Description}}" {% else %} title="Description not provided" {% endif %}></i>
                 </p>
             </section>
         {% endfor %}

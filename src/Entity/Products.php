@@ -41,6 +41,12 @@ class Products
      */
     private $galleryLink;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categories")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $Category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -84,7 +90,7 @@ class Products
 
     public function getImage()
     {
-        return $this->image;
+        return stream_get_contents($this->image);
     }
 
     public function setImage($image): self
@@ -102,6 +108,18 @@ class Products
     public function setGalleryLink(?string $galleryLink): self
     {
         $this->galleryLink = $galleryLink;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->Category;
+    }
+
+    public function setCategory(?Categories $Category): self
+    {
+        $this->Category = $Category;
 
         return $this;
     }

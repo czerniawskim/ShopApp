@@ -13,5 +13,12 @@
                 Back
             </a>
         </p>
+
+        <section class="form">
+            {{form_start(new)}}
+            {{form_widget(new.Name)}}
+            {{form_widget(new.Proceed)}}
+            {{form_end(new)}}
+        </section>
     </main>
 {% endblock %}

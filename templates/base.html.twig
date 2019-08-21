@@ -17,7 +17,18 @@
         </style>
     </head>
     <body>
-        {% block navbar %}{% endblock %}
+        {% block header %}
+            {% block navbar %}{% endblock %}
+            {% block flash %}
+                {% for label,messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{label}}">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            {% endblock %}
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}
             <script src="https://kit.fontawesome.com/75e13d0c4b.js"></script>
