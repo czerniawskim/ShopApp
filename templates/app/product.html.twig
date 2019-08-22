@@ -1,0 +1,78 @@
+{% extends "app/homepage.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    |
+    {{prod.Name}}
+{% endblock %}
+
+{% block flash %}{% endblock %}
+
+{% block body %}
+    <main class="product-container">
+        <div class="main">
+            <div class="route">
+                <p>Homepage
+                    <i class="fas fa-chevron-right"></i>
+                    {{prod.Category.Name}}
+                    <i class="fas fa-chevron-right"></i>
+                    {{prod.Name}}
+                </p>
+            </div>
+            <p>{{prod.Name}}</p>
+            <div class="image">
+                {% if prod.galleryLink is not null %}
+                    <a href="{{path(prod.galleryLink)}}" target="_blank">
+                        <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ prod.image)}}" title="Click to see gallery"/>
+                    </a>
+                {% else %}
+                    <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ prod.image)}}"/>
+                {% endif %}
+            </div>
+            <h3>Tags</h3>
+            <div class="tags">
+                {% for tag in prod.Category.Tags %}
+                    <div class="tag">
+                        <i class="far fa-circle"></i>
+                        {{tag.Name}}
+                    </div>
+                {% endfor %}
+            </div>
+            {% if prod.Description is not null %}
+                <div class="desc">
+                    {{prod.Description|markdown}}
+                </div>
+            {% endif %}
+        </div>
+        <div class="side">
+            <p class="price" id="prod-price" data-val="{{prod.Price}}">
+                <i class="fas fa-dollar-sign"></i>
+                {{prod.Price}}
+            </p>
+            <div class="insert">
+                {{form_start(add)}}
+                {{form_widget(add.Quantity)}}
+                <span id="counter">
+                    1 x
+                    {{prod.Price}}
+                    =
+                    {{1 * prod.Price}}
+                </span>
+                {{form_widget(add.Add)}}
+                {{form_end(add)}}
+            </div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{label}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}
+
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('js/counter.js')}}"></script>
+{% endblock %}

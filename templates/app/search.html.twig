@@ -10,18 +10,20 @@
         <main class="result">
             <h3>{{results|length}}
                 result for
-                {{query}}
+                <span>"{{query|capitalize}}"</span>
             </h3>
             {% for result in results %}
-                <section class="item">
-                    <div class="image">
-                        <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ result.image)}}"/>
-                    </div>
-                    <div class="name">{{result.Name}}</div>
-                    <div class="price">
-                        <i class="fas fa-dollar-sign"></i>
-                        {{result.Price}}</div>
-                </section>
+                <a href="{{path('product', {'id': result.id})}}">
+                    <section class="item">
+                        <div class="image">
+                            <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ result.image)}}"/>
+                        </div>
+                        <div class="name">{{result.Name|capitalize}}</div>
+                        <div class="price">
+                            <i class="fas fa-dollar-sign"></i>
+                            {{result.Price}}</div>
+                    </section>
+                </a>
             {% endfor %}
         </main>
     {% else %}

@@ -216,16 +216,18 @@ main.error {
   margin: auto;
 }
 .result .item {
-  width: 80%;
-  margin: 2% auto;
   height: 100px;
   display: flex;
   color: #fff;
   border: 1px solid red;
   border-radius: 5px;
   font-size: 25px;
-  cursor: default;
   padding: 0 10px;
+}
+.result a {
+  display: block;
+  width: 80%;
+  margin: 2% auto;
 }
 .result .item .image img {
   max-height: 80px;
@@ -246,4 +248,95 @@ main.error {
 }
 .price i {
   color: green;
+}
+
+.product-container {
+  width: 80%;
+  min-height: 350px;
+  padding: 10px;
+  margin: auto;
+  display: flex;
+  box-shadow: 0 0 5px 3px lightgray;
+}
+.main {
+  flex: 3;
+}
+.side {
+  flex: 1;
+  max-height: 500px;
+  padding: 5px 10px;
+  border-left: 1px solid gray;
+}
+.main .route,
+.route i {
+  font-size: 15px;
+  color: gray;
+}
+
+.main .image {
+  height: 300px;
+  border: 1px solid #000;
+  width: 500px;
+}
+.main .image img {
+  max-height: 280px;
+  margin-top: 10px;
+}
+.main > p {
+  font-size: 40px;
+  font-weight: bold;
+  padding: 0 10px;
+}
+.main .tags {
+  width: 90%;
+  margin: auto;
+}
+.tags .tag {
+  width: 15%;
+  height: 25px;
+  margin: 0.5% 2%;
+  background-color: rgb(176, 176, 241);
+  text-align: right;
+  padding: 2px 5px;
+  cursor: default;
+}
+.fa-circle {
+  float: left;
+  padding: 4.5px 0;
+  color: #fff;
+  font-size: 12px;
+}
+.side .price {
+  font-size: 35px;
+}
+.side .insert {
+  margin: 5% auto;
+}
+.side form {
+  display: flex;
+  flex-direction: column;
+}
+.side input {
+  height: 35px;
+  font-size: 20px;
+  padding: 5px;
+  width: 20%;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid red;
+}
+.side #counter {
+  color: gray;
+  font-size: 20px;
+}
+
+.side button {
+  width: 40%;
+  height: 50px;
+  font-size: 30px;
+  outline: none;
+  border: 1px solid red;
+  background-color: transparent;
+  color: red;
+  cursor: pointer;
 }
