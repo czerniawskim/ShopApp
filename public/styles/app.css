@@ -210,3 +210,40 @@ main.error {
   display: inline-block;
   height: 40px;
 }
+
+.result {
+  width: 80%;
+  margin: auto;
+}
+.result .item {
+  width: 80%;
+  margin: 2% auto;
+  height: 100px;
+  display: flex;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: default;
+  padding: 0 10px;
+}
+.result .item .image img {
+  max-height: 80px;
+  margin: 0 10px;
+}
+
+.result .item div {
+  flex: 1;
+  margin: 35px 1%;
+}
+.result div:first-of-type {
+  flex: 0.4;
+  margin: 12px 0;
+}
+.result div:last-of-type {
+  flex: 0.4;
+  text-align: right;
+}
+.price i {
+  color: green;
+}

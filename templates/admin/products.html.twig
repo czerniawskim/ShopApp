@@ -12,7 +12,7 @@
                 <i class="fas fa-arrow-left"></i>
                 Back</a>
         </p>
-        <p>
+        <p class="create">
             <a href="{{path('newProd')}}">
                 <button>
                     <i class="fas fa-plus"></i>
@@ -29,8 +29,17 @@
                     <i class="fas fa-dollar-sign"></i>
                     {{product.Price}}
                 </p>
-                <p class="description">
-                    <i class="fas fa-question-circle" {% if product.Description is not null %} title="{{product.Description}}" {% else %} title="Description not provided" {% endif %}></i>
+                <p class="description" title="{{product.Description}}">
+                    {% if product.Description is null %}
+                        Description not provided
+                    {% else %}
+                        {{product.Description}}
+                    {% endif %}
+                </p>
+                <p>
+                    <a href="{{path('remProd',{'id':product.id})}}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
                 </p>
             </section>
         {% endfor %}

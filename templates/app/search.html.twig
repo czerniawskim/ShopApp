@@ -8,9 +8,10 @@
 {% block body %}
     {% if results is not empty %}
         <main class="result">
-            <h3>Found
-                {{results|length}}
-                results</h3>
+            <h3>{{results|length}}
+                result for
+                {{query}}
+            </h3>
             {% for result in results %}
                 <section class="item">
                     <div class="image">

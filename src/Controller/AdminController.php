@@ -86,6 +86,20 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/category/remove/{id}", name="remCat")
+     */
+    public function remCat($id, EntityManagerInterface $em, CategoriesRepository $cR)
+    {
+        $cat=$cR->findBy(['id'=>$id])[0];
+        $em->remove($cat);
+        $em->flush();
+
+        $this->addFlash('success', 'Category has been removed');
+
+        return $this->redirectToRoute('categories', []);
+    }
+
+    /**
      * @Route("/admin/products", name="products")
      */
     public function products(ProductsRepository $pR)
@@ -105,7 +119,7 @@ class AdminController extends AbstractController
         $new = $this->createFormBuilder()
         ->add('Name', TextType::class, ['attr'=>['placeholder'=>'Product name']])
         ->add('Price', NumberType::class, ['attr'=>['placeholder'=>'0']])
-        ->add('Description', TextareaType::class, ['attr'=>['placeholder'=>'Product description'], 'required'=>false])
+        ->add('Description', TextareaType::class, ['attr'=>['placeholder'=>'Product description', 'title'=>'Markdown supported'], 'required'=>false])
         ->add('Link', TextType::class, ['attr'=>['placeholder'=>'Product gallery'], 'required'=>false])
         ->add('Category', EntityType::class,[
             'class'=>Categories::class,
@@ -172,6 +186,20 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/product/remove/{id}", name="remProd")
+     */
+    public function remProd($id, EntityManagerInterface $em, ProductsRepository $pR)
+    {
+        $prod=$pR->findBy(['id'=>$id])[0];
+        $em->remove($prod);
+        $em->flush();
+
+        $this->addFlash('success', 'Product has been removed');
+
+        return $this->redirectToRoute('products', []);
+    }
+
+    /**
      * @Route("/admin/tags", name="tags")
      */
     public function tags(TagsRepository $tR)
@@ -212,6 +240,20 @@ class AdminController extends AbstractController
         return $this->render('admin/new/tag.html.twig', [
             'new'=>$new->createView()
         ]);
+    }
+
+    /**
+     * @Route("/admin/tag/remove/{id}", name="remTag")
+     */
+    public function remTag($id, EntityManagerInterface $em, TagsRepository $tR)
+    {
+        $tag=$tR->findBy(['id'=>$id])[0];
+        $em->remove($tag);
+        $em->flush();
+
+        $this->addFlash('success', 'Tag has been removed');
+
+        return $this->redirectToRoute('tags', []);
     }
 
     /**

@@ -10,18 +10,29 @@
         <p class="link-back">
             <a href="{{path('dash')}}">
                 <i class="fas fa-arrow-left"></i>
-                Back</a>
+                Back
+            </a>
         </p>
-        <p>
+        <p class="create">
             <a href="{{path('newTag')}}">
                 <button>
                     <i class="fas fa-plus"></i>
-                    Create new tag</button>
+                    Create new tag
+                </button>
             </a>
         </p>
         {% for tag in tags %}
             <section class="item">
-                <p class="name">{{tag.Name}}</p>
+                <p class="id">
+                    <i class="fas fa-id-card"></i>
+                    {{tag.id}}
+                </p>
+                <p class="name">{{tag.Name|capitalize}}</p>
+                <p class="del">
+                    <a href="{{path('remTag', {'id': tag.id})}}">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </p>
             </section>
         {% endfor %}
     </main>

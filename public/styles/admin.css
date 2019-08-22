@@ -46,3 +46,200 @@ main.dash {
   border: none;
   background-color: red;
 }
+
+.tags,
+.products,
+.categories {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.create {
+  width: 55%;
+  margin: auto;
+  height: 50px;
+}
+.create button {
+  width: 90%;
+  margin: auto;
+  height: 45px;
+  border: red 1px solid;
+  background-color: transparent;
+  color: red;
+  border-radius: 5px;
+  font-size: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.tags .item {
+  width: 85%;
+  margin: 1% auto;
+  height: 55px;
+  display: flex;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 20px;
+  cursor: default;
+  padding: 15px 10px;
+}
+.tags .item p {
+  flex: 1;
+}
+.tags .item p:last-of-type,
+.categories .item p:last-of-type,
+.products .item p:last-of-type {
+  flex: 0.1;
+}
+.fa-trash-alt {
+  color: red;
+}
+
+.new {
+  width: 80%;
+  margin: auto;
+}
+.new .form {
+  width: 75%;
+  margin: 1% auto;
+}
+.new form {
+  display: flex;
+  flex-direction: column;
+}
+.new input {
+  width: 85%;
+  margin: 1% auto;
+  border: 1px solid red;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 25px;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+  color: #fff;
+}
+.new ::placeholder {
+  color: #fff;
+}
+.new input[type="checkbox"] {
+  width: auto;
+  margin: 1%;
+  height: 10px;
+}
+#form_Tags {
+  width: 85%;
+  margin: auto;
+}
+.new textarea {
+  width: 85%;
+  margin: auto;
+  border: 1px solid red;
+  border-radius: 5px;
+  height: 100px;
+  resize: none;
+  font-size: 25px;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+  color: #fff;
+}
+.new label {
+  color: #fff;
+}
+.new select {
+  width: 85%;
+  margin: 1% auto;
+  border: 1px solid red;
+  border-radius: 5px;
+  height: 55px;
+  font-size: 25px;
+  outline: none;
+  background-color: transparent;
+  padding: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+.new option {
+  background-color: rgb(34, 33, 33);
+}
+.new input[type="file"] {
+  padding: 10px;
+  cursor: pointer;
+}
+.new ::-webkit-file-upload-button {
+  cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  background-color: red;
+  height: 35px;
+  padding: 0 15px;
+}
+.new button {
+  height: 40px;
+  font-size: 25px;
+  width: 50%;
+  margin: 2% auto;
+  border: 1px solid red;
+  color: #fff;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+}
+
+.categories .item {
+  width: 80%;
+  margin: 2% auto;
+  height: 55px;
+  display: flex;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 30px;
+  padding: 10px;
+}
+.categories p {
+  flex: 1;
+}
+.categories .tag-list {
+  flex: 3;
+  font-size: 15px;
+  overflow: hidden;
+}
+
+.products .item {
+  width: 80%;
+  margin: 2% auto;
+  height: 100px;
+  display: flex;
+  color: #fff;
+  border: 1px solid red;
+  border-radius: 5px;
+  font-size: 25px;
+  cursor: default;
+}
+.item .image img {
+  max-height: 80px;
+}
+.products .item p {
+  flex: 1;
+  margin: 35px 1%;
+}
+.products .item p:first-of-type {
+  flex: 0.6;
+  margin: 10px 0.5%;
+}
+.price i {
+  color: green;
+}
+.description {
+  font-size: 20px;
+  overflow: hidden;
+}
+.price {
+  flex: 0.6 !important;
+}

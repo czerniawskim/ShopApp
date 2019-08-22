@@ -105,7 +105,8 @@ class AppController extends AbstractController
         
         return $this->render('app/search.html.twig', [
             'results'=>$results,
-            'search'=>$search->createView()
+            'search'=>$search->createView(),
+            'query'=>$query
         ]);
     }
 
