@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Products
      * @ORM\JoinColumn(nullable=false)
      */
     private $Category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Opinions", mappedBy="products")
+     */
+    private $Opinions;
+
+    public function __construct()
+    {
+        $this->Opinions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,37 @@ class Products
     public function setCategory(?Categories $Category): self
     {
         $this->Category = $Category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Opinions[]
+     */
+    public function getOpinions(): Collection
+    {
+        return $this->Opinions;
+    }
+
+    public function addOpinion(Opinions $opinion): self
+    {
+        if (!$this->Opinions->contains($opinion)) {
+            $this->Opinions[] = $opinion;
+            $opinion->setProducts($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOpinion(Opinions $opinion): self
+    {
+        if ($this->Opinions->contains($opinion)) {
+            $this->Opinions->removeElement($opinion);
+            // set the owning side to null (unless already changed)
+            if ($opinion->getProducts() === $this) {
+                $opinion->setProducts(null);
+            }
+        }
 
         return $this;
     }

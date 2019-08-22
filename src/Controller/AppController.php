@@ -16,7 +16,7 @@ class AppController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function homepage(Request $request)
+    public function homepage(Request $request, ProductsRepository $pR)
     {
         $search = $this->createForm(SearchType::class);
 
@@ -133,7 +133,6 @@ class AppController extends AbstractController
         ->getForm();
 
         $add->handleRequest($request);
-        dump($prod);
 
         if($add->isSubmitted() && $add->isValid())
         {

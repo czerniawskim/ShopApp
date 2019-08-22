@@ -277,6 +277,7 @@ main.error {
   height: 300px;
   border: 1px solid #000;
   width: 500px;
+  margin: 1% 0 3% 0;
 }
 .main .image img {
   max-height: 280px;
@@ -288,7 +289,7 @@ main.error {
   padding: 0 10px;
 }
 .main .tags {
-  width: 90%;
+  width: 95%;
   margin: auto;
 }
 .tags .tag {
@@ -328,6 +329,7 @@ main.error {
 .side #counter {
   color: gray;
   font-size: 20px;
+  cursor: default;
 }
 
 .side button {
@@ -339,4 +341,18 @@ main.error {
   background-color: transparent;
   color: red;
   cursor: pointer;
+}
+
+.fa-star {
+  color: gold;
+}
+.id {
+  color: gray;
+  margin: 2% 0;
+}
+p.star {
+  font-size: 20px;
+  display: inline-block;
+  cursor: default;
+  margin: 10% 1%;
 }
