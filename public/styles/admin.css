@@ -225,11 +225,15 @@ main.dash {
 .item .image img {
   max-height: 80px;
 }
-.products .item p {
+.products .item p,
+.products .item span {
   flex: 1;
   margin: 35px 1%;
 }
-.products .item p:first-of-type {
+.products .item span p {
+  margin: 0;
+}
+.products .item > p:first-of-type {
   flex: 0.6;
   margin: 10px 0.5%;
 }

@@ -356,3 +356,57 @@ p.star {
   cursor: default;
   margin: 10% 1%;
 }
+
+.recommendations {
+  width: 80%;
+  margin: auto;
+}
+.recommendations .recom-prods {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1%;
+}
+.recom-prods a {
+  display: block;
+  width: 22%;
+  height: 300px;
+}
+.recom-prods .item {
+  box-shadow: 0 0 5px 3px lightgray;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5px;
+}
+.recom-prods .item .image {
+  flex: 5;
+}
+.recom-prods .item .name {
+  flex: 2;
+}
+.recom-prods .item .price {
+  flex: 0.7;
+}
+.recom-prods .image img {
+  max-width: 100%;
+  margin: 5% auto;
+}
+.recom-prods .name {
+  font-size: 23px;
+  font-weight: bold;
+  overflow: hidden;
+}
+.recom-prods .price {
+  font-size: 18px;
+  color: gray;
+  font-weight: bold;
+}
+.recommendations h1,
+.recommendations p {
+  margin: 3% auto auto;
+  text-align: center;
+}
+.recommendations > p {
+  font-size: 20px;
+}

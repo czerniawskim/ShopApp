@@ -27,8 +27,34 @@ class AppController extends AbstractController
             return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
         }
 
+        // Get recommended items by
+        // Generating pseudo-random number
+        // Check if the product is already taken
+        // If yes pass, if no insert product into array
+        $recom = array();
+        $used = array();
+        $last = $pR->getLast();
+        if(!$last)
+        {
+            $recom = null;
+        }
+        else{
+            $last = $last[0]['id'];
+            //dump($pR->findBy(['id'=>rand(1, $last)]));
+            
+            for ($i=0; $i < 15; $i++) { 
+            $rand = random_int(1, $last);
+            if(!in_array($rand, $used) && $rand != 1)
+            {
+                $recom[] = $pR->findBy(['id'=>rand(1, $last)])[0];
+            }
+            $used[] = $rand;
+            }
+        }
+
         return $this->render('app/homepage.html.twig', [
-            'search'=>$search->createView()
+            'search'=>$search->createView(),
+            'recoms'=>$recom
         ]);
     }
 

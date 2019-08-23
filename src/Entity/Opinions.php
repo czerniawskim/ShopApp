@@ -32,6 +32,12 @@ class Opinions
      */
     private $products;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Users")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $User;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +75,18 @@ class Opinions
     public function setProducts(?Products $products): self
     {
         $this->products = $products;
+
+        return $this;
+    }
+
+    public function getUser(): ?Users
+    {
+        return $this->User;
+    }
+
+    public function setUser(?Users $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

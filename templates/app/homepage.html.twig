@@ -67,4 +67,28 @@
     </div>
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+    <main class="recommendations">
+        {% if recoms is not null %}
+            <h1>Our recommendation</h1>
+            <section class="recom-prods">
+                {% for recom in recoms %}
+                    <a href="{{path('product', {'id': recom.id})}}">
+                        <section class="item">
+                            <div class="image">
+                                <img alt="Embedded Image" src="{{asset('prodsImgs/' ~ recom.image)}}"/>
+                            </div>
+                            <p class="name">{{recom.Name}}</p>
+                            <p class="price">
+                                <i class="fas fa-dollar-sign"></i>
+                                {{recom.Price}}</p>
+                        </section>
+                    </a>
+                {% endfor %}
+            </section>
+        {% else %}
+            <h1>Seems like something happend with products</h1>
+            <p>Don't worry we are trying to fix it</p>
+        {% endif %}
+    </main>
+{% endblock %}

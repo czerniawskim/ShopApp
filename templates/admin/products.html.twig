@@ -29,13 +29,13 @@
                     <i class="fas fa-dollar-sign"></i>
                     {{product.Price}}
                 </p>
-                <p class="description" title="{{product.Description}}">
+                <span class="description" title="{{product.Description}}">
                     {% if product.Description is null %}
                         Description not provided
                     {% else %}
-                        {{product.Description}}
+                        {{product.Description|markdown}}
                     {% endif %}
-                </p>
+                </span>
                 <p>
                     <a href="{{path('remProd',{'id':product.id})}}">
                         <i class="fas fa-trash-alt"></i>
