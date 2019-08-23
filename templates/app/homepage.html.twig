@@ -87,8 +87,10 @@
                 {% endfor %}
             </section>
         {% else %}
-            <h1>Seems like something happend with products</h1>
-            <p>Don't worry we are trying to fix it</p>
+            <div class="error">
+                <h1>Seems like something happend with products</h1>
+                <p>Don't worry we are trying to fix it</p>
+            </div>
         {% endif %}
     </main>
 {% endblock %}

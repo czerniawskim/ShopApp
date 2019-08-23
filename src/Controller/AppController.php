@@ -33,20 +33,24 @@ class AppController extends AbstractController
         // If yes pass, if no insert product into array
         $recom = array();
         $used = array();
+        $size = $pR->getSize();
         $last = $pR->getLast();
-        if(!$last)
+        if(!$size)
         {
             $recom = null;
         }
         else{
+            $size = $size[0][1];
             $last = $last[0]['id'];
-            //dump($pR->findBy(['id'=>rand(1, $last)]));
-            
-            for ($i=0; $i < 15; $i++) { 
+            for ($i=0; $i < floor($size) / 2; $i++) { 
             $rand = random_int(1, $last);
-            if(!in_array($rand, $used) && $rand != 1)
+            if(!in_array($rand, $used))
             {
-                $recom[] = $pR->findBy(['id'=>rand(1, $last)])[0];
+                $prod = $pR->findBy(['id'=>$rand]);
+                if($prod)
+                {
+                    $recom[] = $prod[0];
+                }
             }
             $used[] = $rand;
             }
@@ -154,7 +158,7 @@ class AppController extends AbstractController
         $prod = $pR->findBy(['id'=>$id])[0];
 
         $add = $this->createFormBuilder()
-        ->add('Quantity', NumberType::class,['data'=>1, 'attr'=>['min'=>1,'class'=>'quantity']])
+        ->add('Quantity', NumberType::class,['data'=>1, 'attr'=>['min'=>1,'class'=>'quantity', 'autocomplete'=>"off"]])
         ->add('Add', SubmitType::class,['attr'=>['class'=>'cart-add']])
         ->getForm();
 

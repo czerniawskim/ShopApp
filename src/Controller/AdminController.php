@@ -151,18 +151,29 @@ class AdminController extends AbstractController
 
             if($data['Img'])
             {
-                $image = md5(uniqid()).$data['Img']->guessExtension();
+                $info = getimagesize($data['Img']);
+                $x = $info[0];
+                $y = $info[1];
+                
+                if ($x === $y) {
+                    $image = md5(uniqid()).$data['Img']->guessExtension();
             
-                try{
-                    $data['Img']->move(
-                        'prodsImgs',
-                        $image
-                    );
-                }
-                catch(FileException $e){
-                    $this->addFlash('danger', 'Something went wrong during sending image. Try again');
+                    try{
+                        $data['Img']->move(
+                            'prodsImgs',
+                            $image
+                        );
+                    }
+                    catch(FileException $e){
+                        $this->addFlash('danger', 'Something went wrong during sending image. Try again');
+                        return $this->redirectToRoute('newProd', []);
+                    }
+                } else {
+                    $this->addFlash('danger', 'Image width and height must be equal');
+
                     return $this->redirectToRoute('newProd', []);
                 }
+                
             }
 
             $product->setName(strtolower($data['Name']));

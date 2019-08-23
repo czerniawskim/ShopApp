@@ -19,6 +19,15 @@ class ProductsRepository extends ServiceEntityRepository
         parent::__construct($registry, Products::class);
     }
 
+    public function getSize()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('count(p.id)')
+            ->getQuery()
+            ->getResult()
+        ; 
+    }
+
     public function getLast()
     {
         return $this->createQueryBuilder('p')
