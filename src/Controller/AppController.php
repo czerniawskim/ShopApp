@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\SearchType;
+use App\Form\RatingType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductsRepository;
 
@@ -205,10 +206,21 @@ class AppController extends AbstractController
             }
             
         }
+
+        $rating = $this->createForm(RatingType::class);
+
+        $rating->handleRequest($request);
+        if($rating->isSubmitted() && $rating->isValid())
+        {
+            $data=$rating->getData();
+            dump($data);
+        }
+
         return $this->render('app/product.html.twig', [
             'prod'=>$prod,
             'search'=>$search->createView(),
-            'add'=>$add->createView()
+            'add'=>$add->createView(),
+            'rating'=>$rating->createView()
         ]);
     }
 

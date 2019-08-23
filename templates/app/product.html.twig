@@ -3,7 +3,7 @@
 {% block title %}
     {{parent()}}
     |
-    {{prod.Name}}
+    {{prod.Name|capitalize}}
 {% endblock %}
 
 {% block flash %}{% endblock %}
@@ -47,7 +47,20 @@
                 <h2>{{prod.Opinions|length}}
                     opinions</h2>
                 {% if app.session.get('user') is not null %}
-                    <div class="give-rate"></div>
+                    <div class="give-rate" id="rate">
+                        {{form_start(rating)}}
+                        {% for radio in rating.Rate %}
+                            {{form_widget(radio)}}
+                            <label for="{{radio.vars.id}}" id="star-{{radio.vars.value}}" class="required">
+                                <i class="fas fa-star" id="{{radio.vars.value}}" onclick="pick({{radio.vars.value}})"></i>
+                            </label>
+                        {% endfor %}
+                        <div class="content">
+                            {{form_widget(rating.Description)}}
+                        </div>
+                        {{form_widget(rating.Add)}}
+                        {{form_end(rating)}}
+                    </div>
                 {% endif %}
                 {% for opinion in prod.Opinions %}
                     <div class="opinion">
@@ -108,4 +121,5 @@
 {% block javascripts %}
     {{parent()}}
     <script src="{{asset('js/counter.js')}}"></script>
+    <script src="{{asset('js/rate.js')}}"></script>
 {% endblock %}

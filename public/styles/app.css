@@ -7,7 +7,6 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   color: #000;
 }
-
 .navContainer {
   display: flex;
   width: 80%;
@@ -420,4 +419,14 @@ p.star {
 }
 .recommendations .error > p {
   font-size: 20px;
+}
+.give-rate input[type="radio"] {
+  display: none;
+}
+.give-rate label i {
+  color: lightgray;
+  cursor: pointer;
+}
+.give-rate .selected i {
+  color: gold;
 }

@@ -17,7 +17,7 @@ class Opinions
     private $id;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
     private $rate;
 
