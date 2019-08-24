@@ -310,10 +310,12 @@ main.error {
   font-size: 12px;
 }
 .main .desc {
-  width: 85%;
+  width: 95%;
   min-height: 200px;
-  margin: 1% 0;
+  padding: 2%;
+  margin: 5% 0 2%;
   font-size: 25px;
+  border-top: 1px solid gray;
 }
 .side .price {
   font-size: 35px;
@@ -429,4 +431,64 @@ p.star {
 }
 .give-rate .selected i {
   color: gold;
+}
+
+.opinions h1 {
+  margin: 2% 0.5%;
+}
+.give-rate {
+  margin: 1% 0;
+  height: 75px;
+}
+.give-rate form {
+  display: flex;
+}
+.give-rate i {
+  font-size: 20px;
+}
+.give-rate .rate-obj {
+  margin: 3% 0.5%;
+}
+.give-rate textarea {
+  height: 70px;
+  resize: none;
+  width: 60%;
+  margin: 2.5px 1%;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+  padding: 5px;
+}
+.give-rate button {
+  width: 20%;
+  height: 70px;
+  border-radius: 5px;
+  background-color: red;
+  border: none;
+  color: #fff;
+  font-size: 25px;
+  outline: none;
+  cursor: pointer;
+  margin: 2.5px 2px;
+}
+.opinions-display {
+  border-top: 1px solid gray;
+  padding: 10px 5px;
+}
+.opinions-display .opinion {
+  margin: 2%;
+  width: 95%;
+  border-radius: 5px;
+  border: 1px solid gray;
+  padding: 5px 8px;
+  height: auto;
+  min-height: 75px;
+  max-height: 125px;
+  overflow: hidden;
+}
+.opinion .op-desc {
+  font-size: 25px;
+}
+.opinion .user {
+  font-size: 14px;
 }

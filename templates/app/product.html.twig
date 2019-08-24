@@ -44,35 +44,41 @@
                 </div>
             {% endif %}
             <div class="opinions">
-                <h2>{{prod.Opinions|length}}
-                    opinions</h2>
+                <h1>{{prod.Opinions|length}}
+                    opinions</h1>
                 {% if app.session.get('user') is not null %}
                     <div class="give-rate" id="rate">
                         {{form_start(rating)}}
                         {% for radio in rating.Rate %}
-                            {{form_widget(radio)}}
-                            <label for="{{radio.vars.id}}" id="star-{{radio.vars.value}}" class="required">
-                                <i class="fas fa-star" id="{{radio.vars.value}}" onclick="pick({{radio.vars.value}})"></i>
-                            </label>
+                            <div class="rate-obj">
+                                {{form_widget(radio)}}
+                                <label for="{{radio.vars.id}}" id="star-{{radio.vars.value}}" class="required">
+                                    <i class="fas fa-star" id="{{radio.vars.value}}" onclick="pick({{radio.vars.value}})"></i>
+                                </label>
+                            </div>
                         {% endfor %}
-                        <div class="content">
-                            {{form_widget(rating.Description)}}
-                        </div>
+                        {{form_widget(rating.Description)}}
                         {{form_widget(rating.Add)}}
                         {{form_end(rating)}}
                     </div>
                 {% endif %}
-                {% for opinion in prod.Opinions %}
-                    <div class="opinion">
-                        <div class="rate">
-                            <i class="fas fa-star"></i>
-                            {{opinion.rate}}
+                <div class="opinions-display">
+                    {% for opinion in prod.Opinions %}
+                        <div class="opinion">
+                            <div class="rate">
+                                {% for i in range(1,opinion.rate) %}
+                                    <i class="fas fa-star" title="{{opinion.rate}}"></i>
+                                {% endfor %}
+                            </div>
+                            <div class="op-desc">
+                                {{opinion.description}}
+                            </div>
+                            <div class="user">
+                                {{opinion.User.Username}}
+                            </div>
                         </div>
-                        <div class="op-desc">
-                            {{opinion.description}}
-                        </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <div class="side">
