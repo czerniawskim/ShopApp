@@ -11,6 +11,8 @@ use App\Form\SearchType;
 use App\Form\RatingType;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductsRepository;
+use App\Entity\Opinions;
+use Doctrine\ORM\EntityManagerInterface;
 
 class AppController extends AbstractController
 {
@@ -145,7 +147,7 @@ class AppController extends AbstractController
     /**
      * @Route("/product/{id}", name="product")
      */
-    public function product($id, ProductsRepository $pR, Request $request, SessionInterface $session)
+    public function product($id, ProductsRepository $pR, EntityManagerInterface $em, Request $request, SessionInterface $session)
     {
         $search = $this->createForm(SearchType::class);
 
@@ -213,7 +215,18 @@ class AppController extends AbstractController
         if($rating->isSubmitted() && $rating->isValid())
         {
             $data=$rating->getData();
-            dump($data);
+            $user=$session->get('user');
+
+            $opinion = new Opinions();
+            $opinion->setRate($data->getRate());
+            $opinion->setDescription($data->getDescription());
+            $opinion->setProducts($prod);
+            $opinion->setUser($user);
+
+            $em->merge($opinion);
+            $em->flush();
+
+            return $this->redirectToRoute('product', ['id'=>$id]);
         }
 
         return $this->render('app/product.html.twig', [

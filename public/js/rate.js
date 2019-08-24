@@ -5,5 +5,7 @@ function pick(id) {
     stars[0].classList.remove("selected");
   }
 
-  star.classList.add("selected");
+  for (let i = 1; i <= id; i++) {
+    document.getElementById("star-" + i).classList.add("selected");
+  }
 }

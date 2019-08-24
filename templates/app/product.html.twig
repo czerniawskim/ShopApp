@@ -112,7 +112,7 @@
                     {% set rate = rate / prod.Opinions|length %}
                 {% endif %}
                 <i class="fas fa-star"></i>
-                {{rate}}
+                {{rate|round(2,'floor')}}
             </p>
         </div>
     </main>
