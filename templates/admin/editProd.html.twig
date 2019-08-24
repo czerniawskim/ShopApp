@@ -1,0 +1,29 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Edit product
+{% endblock %}
+
+{% block body %}
+    <main class="edit">
+        <p class="link-back">
+            <a href="{{path('products')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+        </p>
+
+        <section class="form">
+            {% set ifcheck = false %}
+            {{form_start(edit)}}
+            {{form_widget(edit.Name)}}
+            {{form_widget(edit.Price)}}
+            {{form_widget(edit.Gallery)}}
+            {{form_widget(edit.Category)}}
+            {{form_widget(edit.Desc)}}
+            {{form_widget(edit.Submit)}}
+            {{form_end(edit)}}
+        </section>
+    </main>
+{% endblock %}

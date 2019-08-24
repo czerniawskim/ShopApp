@@ -37,6 +37,9 @@
                     {% endif %}
                 </span>
                 <p>
+                    <a href="{{path('editProd',{'id':product.id})}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
                     <a href="{{path('remProd',{'id':product.id})}}">
                         <i class="fas fa-trash-alt"></i>
                     </a>

@@ -1,0 +1,38 @@
+{% extends "admin/dash.html.twig" %}
+
+{% block title %}
+    {{parent()}}
+    | Edit category
+{% endblock %}
+
+{% block body %}
+    <main class="edit">
+        <p class="link-back">
+            <a href="{{path('categories')}}">
+                <i class="fas fa-arrow-left"></i>
+                Back
+            </a>
+        </p>
+
+        <section class="form">
+            {% set ifcheck = false %}
+            {{form_start(edit)}}
+            {{form_widget(edit.Name)}}
+            <div id="form_tags">
+                {% for tag in edit.Tags %}
+                    {% set ifcheck = false %}
+                    {% set ind = loop.index + 1 %}
+                    {% for ctag in cat.Tags %}
+                        {% if ctag.Name == edit.children.Tags.children[ind].vars.label %}
+                            {% set ifcheck = true %}
+                        {% endif %}
+                    {% endfor %}
+                    {{form_widget(tag, {'attr':{'checked': ifcheck}})}}
+                    {{form_label(tag)}}
+                {% endfor %}
+            </div>
+            {{form_widget(edit.Submit)}}
+            {{form_end(edit)}}
+        </section>
+    </main>
+{% endblock %}

@@ -100,6 +100,47 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/admin/category/edit/{id}", name="editCat")
+     */
+    public function editCat($id, CategoriesRepository $cR, EntityManagerInterface $em, Request $request)
+    {
+        $cat=$cR->findBy(['id'=>$id])[0];
+
+        $edit=$this->createFormBuilder()
+        ->add('Name',TextType::class, [
+            'attr'=>['placeholder'=>'Category name', 'value'=>$cat->getName()]
+        ])
+        ->add('Tags',EntityType::class, [
+            'class'=>Tags::class,
+            'choice_label'=>'Name',
+            'expanded'=>true,
+            'multiple'=>true
+        ])
+        ->add('Submit',SubmitType::class)
+        ->getForm();
+
+        $edit->handleRequest($request);
+        if($edit->isSubmitted() && $edit->isValid())
+        {
+            $data=$edit->getData();
+            $cat->setName($data['Name']);
+            $cat->clearTags();
+            foreach($data['Tags'] as $tag)
+            {
+                $cat->addTag($tag);
+            }
+            $em->flush();
+            $this->addFlash('success', 'Category has been edited');
+            return $this->redirectToRoute('categories', []);
+        }
+
+        return $this->render('admin/editCat.html.twig', [
+            'edit'=>$edit->createView(),
+            'cat'=>$cat
+        ]);
+    }
+
+    /**
      * @Route("/admin/products", name="products")
      */
     public function products(ProductsRepository $pR)
@@ -208,6 +249,58 @@ class AdminController extends AbstractController
         $this->addFlash('success', 'Product has been removed');
 
         return $this->redirectToRoute('products', []);
+    }
+
+    /**
+     * @Route("/admin/product/edit/{id}", name="editProd")
+     */
+    public function editProd($id, ProductsRepository $pR, EntityManagerInterface $em, Request $request)
+    {
+        $prod=$pR->findBy(['id'=>$id])[0];
+
+        $edit=$this->createFormBuilder()
+        ->add('Name',TextType::class, [
+            'attr'=>['placeholder'=>'Category name', 'value'=>$prod->getName()]
+        ])
+        ->add('Price', NumberType::class, [
+            'attr'=>['placeholder'=>'Product price', 'value'=>$prod->getPrice()]
+        ])
+        ->add('Gallery', TextType::class, [
+            'attr'=>['placeholder'=>'Product gallery', 'value'=>$prod->getGalleryLink()],
+            'required'=>false
+        ])
+        ->add('Category', EntityType::class, [
+            'class'=>Categories::class,
+            'choice_label'=>'Name',
+            'data'=>$prod->getCategory()->getName()
+        ])
+        ->add('Desc', TextareaType::class, [
+            'attr'=>['placeholder'=>'Product description', 'value'=>$prod->getDescription()],
+            'required'=>false
+        ])
+        ->add('Submit',SubmitType::class)
+        ->getForm();
+
+        $edit->handleRequest($request);
+        if($edit->isSubmitted() && $edit->isValid())
+        {
+            $data=$edit->getData();
+            $prod->setName($data['Name']);
+            $prod->setPrice($data['Price']);
+            $prod->setGalleryLink($data['Gallery']);
+            $prod->setCategory($data['Category']);
+            $prod->setDescription($data['Desc']);
+
+            $em->flush();
+
+            $this->addFlash('success', 'Product has been edited');
+            return $this->redirectToRoute('products', []);
+        }
+
+        return $this->render('admin/editProd.html.twig', [
+            'edit'=>$edit->createView(),
+            'prod'=>$prod
+        ]);
     }
 
     /**

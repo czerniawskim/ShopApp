@@ -35,6 +35,9 @@
                     {% endfor %}
                 </p>
                 <p>
+                    <a href="{{path('editCat',{'id':category.id})}}">
+                        <i class="fas fa-edit"></i>
+                    </a>
                     <a href="{{path('remCat',{'id':category.id})}}">
                         <i class="fas fa-trash-alt"></i>
                     </a>

@@ -88,15 +88,19 @@ main.dash {
 .tags .item p {
   flex: 1;
 }
-.tags .item p:last-of-type,
+.tags .item p:last-of-type {
+  flex: 0.1;
+}
 .categories .item p:last-of-type,
 .products .item p:last-of-type {
-  flex: 0.1;
+  flex: 0.5;
 }
 .fa-trash-alt {
   color: red;
 }
-
+.fa-edit {
+  color: green;
+}
 .new {
   width: 80%;
   margin: auto;
@@ -246,4 +250,87 @@ main.dash {
 }
 .price {
   flex: 0.6 !important;
+}
+
+.edit {
+  width: 85%;
+  margin: 2% auto;
+  min-height: 250px;
+}
+.edit form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+}
+.edit input {
+  width: 90%;
+  margin: 2% auto;
+  height: 50px;
+  font-size: 25px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  outline: none;
+}
+.edit label {
+  color: #fff;
+}
+.edit input::placeholder {
+  color: #fff;
+}
+.edit #form_tags {
+  width: 90%;
+  margin: auto;
+}
+.edit input[type="checkbox"] {
+  margin: 0.5% 0 1% 3%;
+  width: 2%;
+  height: auto;
+}
+.edit input[type="checkbox"]:first-of-type {
+  margin: 0.5% 0 1% 0;
+  width: 2%;
+}
+.edit textarea {
+  width: 90%;
+  margin: 2% auto;
+  height: 150px;
+  resize: none;
+  font-size: 25px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  outline: none;
+}
+.edit textarea::placeholder {
+  color: #fff;
+}
+.edit select {
+  width: 90%;
+  margin: 2% auto;
+  height: 50px;
+  font-size: 25px;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: transparent;
+  color: #fff;
+  padding: 10px;
+  outline: none;
+  cursor: pointer;
+}
+.edit button {
+  cursor: pointer;
+  width: 50%;
+  margin: 2% auto;
+  height: 45px;
+  border: none;
+  color: #fff;
+  background-color: red;
+  border-radius: 5px;
+  font-size: 30px;
 }

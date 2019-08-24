@@ -75,4 +75,8 @@ class Categories
 
         return $this;
     }
+    public function clearTags()
+    {
+        $this->getTags()->clear();
+    }
 }
