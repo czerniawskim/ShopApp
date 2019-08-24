@@ -88,9 +88,16 @@ class AdminController extends AbstractController
     /**
      * @Route("/admin/category/remove/{id}", name="remCat")
      */
-    public function remCat($id, EntityManagerInterface $em, CategoriesRepository $cR)
+    public function remCat($id, EntityManagerInterface $em, CategoriesRepository $cR, ProductsRepository $pR)
     {
         $cat=$cR->findBy(['id'=>$id])[0];
+        // Remove products that belonged to this category
+        $prods = $pR->findBy(['Category'=>$cat]);
+        foreach ($prods as $prod) {
+            $em->remove($prod);
+            $em->flush();
+        }
+
         $em->remove($cat);
         $em->flush();
 
@@ -272,7 +279,7 @@ class AdminController extends AbstractController
         ->add('Category', EntityType::class, [
             'class'=>Categories::class,
             'choice_label'=>'Name',
-            'data'=>$prod->getCategory()->getName()
+            'data'=>$prod->getCategory()
         ])
         ->add('Desc', TextareaType::class, [
             'attr'=>['placeholder'=>'Product description', 'value'=>$prod->getDescription()],

@@ -323,6 +323,9 @@ main.dash {
   outline: none;
   cursor: pointer;
 }
+.edit option {
+  background-color: rgb(34, 33, 33);
+}
 .edit button {
   cursor: pointer;
   width: 50%;
