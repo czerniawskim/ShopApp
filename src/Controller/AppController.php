@@ -179,20 +179,21 @@ class AppController extends AbstractController
                 $cart = $session->get('cart');
                 if($cart != null)
                 {
-                    foreach($cart as $c)
+                    foreach($cart as $key =>$value)
                     {
-                        if ($c['prod'] == $prod->getName()) {
-                            $c['quant'] = $c['quant'] + $elem['quant'];
-                            $c['sum'] = $c['sum'] + $elem['sum'];
+                        if ($value['prod'] == $prod->getName()) {
+                            $cart[$key]['quant'] = $value['quant'] + $elem['quant'];
+                            $cart[$key]['sum'] = $value['sum'] + $elem['sum'];
                             
-                            //TODO: Updating session object
+                            // Not sure why but its finally works
+                            $session->set('cart',$cart);
+                            return $this->redirectToRoute('cart', []);
                         } else {
                             $cart[] = $elem;
                             $session->set('cart', $cart);
 
                             return $this->redirectToRoute('cart', []);
                         }
-                        
                     }
                 }
                 else
@@ -254,7 +255,30 @@ class AppController extends AbstractController
         $cart = $session->get('cart');
         dump($cart);
         return $this->render('app/cart.html.twig', [
-            'search'=>$search->createView()
+            'search'=>$search->createView(),
+            'cart'=>$cart
         ]);
+    }
+
+    /**
+     * @Route("/cart/remove/{id}", name="remCart")
+     */
+    public function remCart($id, SessionInterface $session)
+    {
+        $cart = $session->get('cart');
+        unset($cart[$id]);
+        $session->remove('cart');
+        $session->set('cart',$cart);
+        return $this->redirectToRoute('cart', []);
+    }
+
+    /**
+     * @Route("/cart/clear", name="clearCart")
+     */
+    public function clearCart(SessionInterface $session)
+    {
+        $session->remove('cart');
+
+        return $this->redirectToRoute('cart', []);
     }
 }

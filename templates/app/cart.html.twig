@@ -5,4 +5,41 @@
     | Cart
 {% endblock %}
 
-{% block body %}{% endblock %}
+{% block body %}
+    <main class="cart-org">
+        {% if app.session.get('cart') is not empty %}
+            <section class="cart-cont">
+                <div class="cart-prods">
+                    {% for key, prod in cart %}
+                        <div class="prod">
+                            <h2>{{prod.prod|capitalize}}</h2>
+                            <input type="number" readonly value="{{prod.quant}}">
+                            <a href="{{path('remCart', {'id': key})}}">
+                                <i class="far fa-times-circle"></i>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="cart-side">
+                    <a href="{{path('clearCart')}}">
+                        <button>
+                            <i class="far fa-times-circle"></i>
+                            Clear cart
+                        </button>
+                    </a>
+                    {% set price = 0 %}
+                    {% for prod in cart %}
+                        {% set price = price + prod.sum %}
+                    {% endfor %}
+                    <p class="sum-price">
+                        Total:
+                        <i class="fas fa-dollar-sign"></i>
+                        {{price}}
+                    </p>
+                </div>
+            </section>
+        {% else %}
+            <h2>Cart is empty browse products and add them to it</h2>
+        {% endif %}
+    </main>
+{% endblock %}

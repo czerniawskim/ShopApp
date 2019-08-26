@@ -478,8 +478,7 @@ p.star {
 .opinions-display .opinion {
   margin: 2%;
   width: 95%;
-  border-radius: 5px;
-  border: 1px solid gray;
+  border-left: 2px solid gray;
   padding: 5px 8px;
   height: auto;
   min-height: 75px;
@@ -491,4 +490,78 @@ p.star {
 }
 .opinion .user {
   font-size: 14px;
+}
+
+.cart-org {
+  width: 80%;
+  margin: auto;
+}
+.cart-org > h2 {
+  text-align: center;
+  font-size: 30px;
+}
+.cart-org .cart-cont {
+  display: flex;
+}
+.cart-prods {
+  flex: 2.5;
+  display: flex;
+  flex-direction: column;
+  height: 550px;
+  padding: 8px;
+  overflow-y: auto;
+}
+.cart-prods .prod {
+  display: flex;
+  margin: 2% 0;
+  border: 1px solid #000;
+  min-height: 75px;
+  max-height: 75px;
+}
+.prod h2 {
+  flex: 5;
+}
+.prod input {
+  flex: 0.5;
+  height: 50px;
+  max-width: 70px;
+  font-size: 25px;
+  margin: 12.5px 0.7%;
+  outline: none;
+  padding: 5px;
+  cursor: default;
+}
+.prod a {
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 20px 0.7%;
+  font-size: 25px;
+}
+.fa-times-circle {
+  color: red;
+}
+.cart-side {
+  flex: 1;
+  height: 550px;
+  padding: 10px;
+  border-left: 1px solid gray;
+}
+.cart-side button {
+  height: 55px;
+  width: 50%;
+  border: 1px solid red;
+  border-radius: 5px;
+  background-color: transparent;
+  color: red;
+  font-size: 25px;
+  cursor: pointer;
+}
+.cart-side p {
+  margin: 5% 1%;
+  font-size: 30px;
+  color: gray;
+}
+.fa-dollar-sign {
+  color: green;
 }
