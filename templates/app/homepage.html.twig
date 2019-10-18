@@ -23,7 +23,7 @@
 
         <div class="contact">
             <p>
-                <i class="fas fa-headphones-alt"></i>
+                <i class="fas fa-info"></i>
             </p>
             <div class="dropdown-contact">
                 <p>
@@ -45,8 +45,8 @@
             <div class="login">
                 <a href="{{path('login')}}">
                     <button>
-                        <i class="far fa-user"></i>
-                        Login</button>
+                        Login
+                    </button>
                 </a>
             </div>
         {% else %}
@@ -54,7 +54,8 @@
                 <a href="{{path('logout')}}">
                     <button title="{{app.session.get('user').Username}}">
                         <i class="fas fa-sign-out-alt"></i>
-                        Logout</button>
+                        Logout
+                    </button>
                 </a>
             </div>
         {% endif %}
@@ -69,8 +70,8 @@
 
 {% block body %}
     <main class="recommendations">
-        {% if recoms is not null %}
-            <h1>Our recommendation</h1>
+        {% if recoms is not empty %}
+            <h1>Some of our products</h1>
             <section class="recom-prods">
                 {% for recom in recoms %}
                     <a href="{{path('product', {'id': recom.id})}}">

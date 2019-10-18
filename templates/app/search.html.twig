@@ -6,13 +6,13 @@
 {% endblock %}
 
 {% block body %}
-    {% if results is not empty %}
-        <main class="result">
-            <h3>{{results|length}}
+    <main class="result">
+        {% if pagination is not empty %}
+            <h3>{{pagination|length}}
                 result for
                 <span>"{{query|capitalize}}"</span>
             </h3>
-            {% for result in results %}
+            {% for result in pagination %}
                 <a href="{{path('product', {'id': result.id})}}">
                     <section class="item">
                         <div class="image">
@@ -25,10 +25,20 @@
                     </section>
                 </a>
             {% endfor %}
-        </main>
-    {% else %}
-        <main class="error">
-            <h2>Oops... Looks like we are not having that you are looking for...</h2>
-        </main>
-    {% endif %}
+            <section class="navigator">
+                {{knp_pagination_render(pagination)}}
+            </section>
+        {% else %}
+            <section class="error">
+                <h2>No results has been found for
+                    <span>"{{query}}"</span>
+                </h2>
+                <a href="{{path('homepage')}}">
+                    <button>
+                        Homepage
+                    </button>
+                </a>
+            </section>
+        {% endif %}
+    </main>
 {% endblock %}

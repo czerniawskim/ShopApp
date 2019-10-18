@@ -13,6 +13,10 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use App\Repository\ProductsRepository;
 use App\Entity\Opinions;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Faker\Factory;
+use App\Repository\CategoriesRepository;
+use App\Entity\Products;
 
 class AppController extends AbstractController
 {
@@ -29,34 +33,48 @@ class AppController extends AbstractController
             $data=$search->getData()['Query'];
             return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
         }
-
         // Get recommended items by
         // Generating pseudo-random number
         // Check if the product is already taken
         // If yes pass, if no insert product into array
-        $recom = array();
-        $used = array();
         $size = $pR->getSize();
-        $last = $pR->getLast();
         if(!$size)
         {
             $recom = null;
         }
         else{
-            $size = $size[0][1];
+            $recom = array();
+            $used = array();
+            $last = $pR->getLast();
             $last = $last[0]['id'];
-            for ($i=0; $i < floor($size) / 2; $i++) { 
-            $rand = random_int(1, $last);
-            if(!in_array($rand, $used))
-            {
-                $prod = $pR->findBy(['id'=>$rand]);
-                if($prod)
-                {
-                    $recom[] = $prod[0];
+            if ($size > 15) {
+                while(sizeof($recom) != 15) { 
+                    $rand = random_int(1, $last);
+                    if(!in_array($rand, $used))
+                    {
+                        $prod = $pR->findBy(['id'=>$rand]);
+                        if($prod)
+                        {
+                            $recom[] = $prod[0];
+                        }
+                    }
+                    $used[] = $rand;
+                }
+            } else {
+                while(sizeof($recom) != $size) { 
+                    $rand = random_int(1, $last);
+                    if(!in_array($rand, $used))
+                    {
+                        $prod = $pR->findBy(['id'=>$rand]);
+                        if($prod)
+                        {
+                            $recom[] = $prod[0];
+                        }
+                    }
+                    $used[] = $rand;
                 }
             }
-            $used[] = $rand;
-            }
+            
         }
 
         return $this->render('app/homepage.html.twig', [
@@ -124,7 +142,7 @@ class AppController extends AbstractController
     /**
      * @Route("/search/{query}", name="search")
      */
-    public function search($query, ProductsRepository $pR, Request $request)
+    public function search($query, ProductsRepository $pR, Request $request, PaginatorInterface $paginator)
     {
         $search = $this->createForm(SearchType::class);
 
@@ -134,13 +152,18 @@ class AppController extends AbstractController
             $data=$search->getData()['Query'];
             return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
         }
+        
+        $results=$pR->findProducts($query);
 
-        $results=$pR->findBy(['Name'=>$query]);
+        foreach($results as &$res)
+        {
+            $res['image'] = stream_get_contents($res['image']);
+        }
         
         return $this->render('app/search.html.twig', [
-            'results'=>$results,
             'search'=>$search->createView(),
-            'query'=>$query
+            'query'=>$query,
+            'pagination'=>$paginator->paginate($results, $request->query->getInt('page', 1), 6)
         ]);
     }
 

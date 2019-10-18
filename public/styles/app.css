@@ -9,9 +9,10 @@
 }
 .navContainer {
   display: flex;
-  width: 80%;
-  height: 75px;
-  margin: 2% auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
   box-shadow: 0 0 5px 2px lightgray;
 }
 .appLabel,
@@ -20,27 +21,34 @@
 .logout,
 .cart {
   flex: 1;
-  font-size: 30px;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4.5vh;
   text-align: center;
-  margin: 15px 0;
-  height: 45px;
 }
 .cart,
 .contact {
   flex: 0.4;
 }
 
+.login a,
+.logout a {
+  display: flex;
+  width: 80%;
+  height: 100%;
+}
 .login button,
 .logout button {
-  height: 40px;
-  width: 80%;
+  height: 100%;
+  width: 100%;
   cursor: pointer;
   border: none;
   border-radius: 10px;
-  font-size: 20px;
   outline: none;
+  font-size: 2.5vh;
 }
-.login button i,
 .logout button i {
   color: #fff;
 }
@@ -60,7 +68,7 @@
   display: none;
   position: absolute;
   left: -50%;
-  top: 105%;
+  top: 5.5vh;
   width: 200%;
   font-size: 18px;
   background-color: #fff;
@@ -88,27 +96,32 @@
 }
 
 .search {
-  padding: 5px 2px;
   flex: 4;
-  height: 55px;
-  margin: 10px 0;
+  height: 10vh;
+}
+.search form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .search input {
   width: 80%;
-  height: 45px;
+  height: 7vh;
   border-radius: 5px;
   outline: none;
-  font-size: 20px;
-  padding: 5px;
+  font-size: 3vh;
+  padding: 0.1vh 0.5vw;
   border: solid 1px #000;
 }
 .search button {
-  height: 45px;
+  height: 7vh;
   border-radius: 5px;
   outline: none;
   width: 18%;
   border: 1px solid red;
-  font-size: 20px;
+  font-size: 3.5vh;
   color: red;
   background-color: transparent;
   cursor: pointer;
@@ -212,41 +225,105 @@ main.error {
 
 .result {
   width: 80%;
-  margin: auto;
+  height: 88vh;
+  margin: 1vh auto;
+  padding: 0.3vh 0.3vw;
+  box-shadow: 0 3px 5px lightgray;
 }
 .result .item {
-  height: 100px;
+  height: 100%;
+  width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   color: #fff;
   border: 1px solid red;
   border-radius: 5px;
   font-size: 25px;
   padding: 0 10px;
 }
-.result a {
+.result > a {
   display: block;
-  width: 80%;
-  margin: 2% auto;
+  width: 85%;
+  height: 12vh;
+  margin: 0.7vh auto;
 }
 .result .item .image img {
-  max-height: 80px;
-  margin: 0 10px;
+  max-height: 90%;
+  max-width: 90%;
+}
+.result .navigator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 7vh;
+  margin: 0.3vh 0;
+}
+.navigator span {
+  border: 1px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10%;
+  height: 70%;
+  margin: 0 0.3vw;
+  font-weight: bold;
+}
+.navigator .current {
+  cursor: default;
+  color: red;
+  border: 1px solid red;
 }
 
-.result .item div {
-  flex: 1;
-  margin: 35px 1%;
+.result div:nth-child(1) {
+  flex: 0.25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
 }
-.result div:first-of-type {
-  flex: 0.4;
-  margin: 12px 0;
+.result .item div:nth-child(2) {
+  flex: 1.5;
+  overflow: hidden;
+  font-weight: bold;
+  text-overflow: ellipsis;
 }
-.result div:last-of-type {
-  flex: 0.4;
+.result div:nth-child(3) {
+  flex: 0.25;
   text-align: right;
+  color: green;
+  font-weight: bold;
 }
 .price i {
   color: green;
+}
+.error {
+  width: 100%;
+  height: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.error h2 {
+  font-size: 3.8vh;
+  margin-bottom: 2vh;
+}
+.error a {
+  width: 25%;
+  height: 12%;
+  margin-top: 2vh;
+}
+.error a button {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  font-size: 4vh;
+  cursor: pointer;
+  background-color: rgb(219, 27, 27);
+  color: #fff;
+  border: none;
 }
 
 .product-container {
@@ -368,51 +445,54 @@ p.star {
 }
 
 .recommendations {
-  width: 80%;
-  margin: auto;
+  width: 85%;
+  min-height: 85vh;
+  max-height: 210vh;
+  margin: 2.5vh auto;
 }
 .recommendations .recom-prods {
   display: flex;
   flex-wrap: wrap;
-  margin: 1%;
 }
 .recom-prods a {
   display: block;
-  width: 22%;
-  height: 300px;
-  margin: 1.3%;
+  width: 16vw;
+  height: 50vh;
+  margin: 0.25vh 0.3vw;
 }
 .recom-prods .item {
-  box-shadow: 0 0 5px 3px lightgray;
-  height: 300px;
+  box-shadow: 0 2px 3px lightgray;
+  height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 0 5px;
 }
 .recom-prods .item .image {
   flex: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .recom-prods .item .name {
-  flex: 2;
-}
-.recom-prods .item .price {
-  flex: 0.7;
-}
-.recom-prods .image img {
-  max-width: 80%;
-  max-height: 80%;
-  margin: 5% 15%;
-}
-.recom-prods .name {
-  font-size: 23px;
+  flex: 1.5;
+  margin: 0 0.35vw;
+  font-size: 3.5vh;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: bold;
   overflow: hidden;
 }
-.recom-prods .price {
-  font-size: 18px;
-  color: gray;
+.recom-prods .item .price {
+  flex: 0.7;
+  margin: 0 0.35vw;
+  font-size: 2.8vh;
+  color: green;
   font-weight: bold;
+}
+.recom-prods .image img {
+  max-width: 15vw;
+  max-height: 90%;
 }
 .recommendations .error h1,
 .recommendations .error p {
