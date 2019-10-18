@@ -10,19 +10,32 @@
         {% if app.session.get('cart') is not empty %}
             <section class="cart-cont">
                 <div class="cart-prods">
-                    {% for key, prod in cart %}
-                        <div class="prod">
-                            <h2>{{prod.prod|capitalize}}</h2>
-                            <input type="number" readonly value="{{prod.quant}}">
-                            <a href="{{path('remCart', {'id': key})}}">
-                                <i class="far fa-times-circle"></i>
-                            </a>
-                        </div>
-                    {% endfor %}
+                    <div class="top-cart-prods">
+                        <p>
+                            Item name
+                        </p>
+                        <p>
+                            Quantity
+                        </p>
+                        <p>
+                            Remove
+                        </p>
+                    </div>
+                    <div class="prods-org">
+                        {% for key, prod in cart %}
+                            <div class="prod">
+                                <a href="{{path('product', {'id':prod.id})}}">{{prod.prod|capitalize}}</a>
+                                <input type="number" readonly value="{{prod.quant}}">
+                                <a href="{{path('remCart', {'id': key})}}">
+                                    <i class="far fa-times-circle"></i>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="cart-side">
                     <a href="{{path('clearCart')}}">
-                        <button>
+                        <button class="clear-cart">
                             <i class="far fa-times-circle"></i>
                             Clear cart
                         </button>
@@ -34,8 +47,16 @@
                     <p class="sum-price">
                         Total:
                         <i class="fas fa-dollar-sign"></i>
-                        {{price}}
+                        <span>
+                            {{price}}
+                        </span>
                     </p>
+                    <a href="#">
+                        <button class="pay-proceed">
+                            <i class="fas fa-money-bill-wave"></i>
+                            Proceed to payment
+                        </button>
+                    </a>
                 </div>
             </section>
         {% else %}

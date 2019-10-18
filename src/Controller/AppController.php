@@ -86,8 +86,16 @@ class AppController extends AbstractController
     /**
      * @Route("/branches", name="branches")
      */
-    public function branches()
+    public function branches(Request $request)
     {
+        $search = $this->createForm(SearchType::class);
+
+        $search->handleRequest($request);
+        if($search->isSubmitted() && $search->isValid())
+        {
+            $data=$search->getData()['Query'];
+            return $this->redirectToRoute('search', ['query'=>strtolower($data)]);
+        } 
         $branches = [
             'Warsaw'=>[
                 'Jagiellońska 35',
@@ -134,6 +142,7 @@ class AppController extends AbstractController
         ];
 
         return $this->render('app/branches.html.twig', [
+            'search'=>$search->createView(),
             'branches'=>$branches,
             'hours'=>$openH
         ]);
@@ -197,7 +206,7 @@ class AppController extends AbstractController
             if ($quant > 0) {
                 $sum=$prod->getPrice() * $quant;
 
-                $elem=array("prod"=>$prod->getName(), "quant"=>$quant, "sum"=>$sum);
+                $elem=array("prod"=>$prod->getName(), "quant"=>$quant, "sum"=>$sum, 'id'=>$prod->getId());
 
                 $cart = $session->get('cart');
                 if($cart != null)
