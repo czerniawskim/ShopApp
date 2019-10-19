@@ -177,8 +177,6 @@ class UserController extends AbstractController
 
         $session->remove('user');
 
-        $this->addFlash('success', 'You were successfully logged out');
-
         return $this->redirectToRoute('homepage', []);
     }
 

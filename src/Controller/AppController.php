@@ -301,7 +301,7 @@ class AppController extends AbstractController
         unset($cart[$id]);
         $session->remove('cart');
         $session->set('cart',$cart);
-        return $this->redirectToRoute('cart', []);
+        return $this->redirectToRoute('cart');
     }
 
     /**
@@ -311,6 +311,6 @@ class AppController extends AbstractController
     {
         $session->remove('cart');
 
-        return $this->redirectToRoute('cart', []);
+        return $this->redirectToRoute('cart');
     }
 }

@@ -1,8 +1,7 @@
 {% extends "app/homepage.html.twig" %}
 
-{% block title %}
-    {{parent()}}
-    | Cart
+{% block addition %}
+    Cart
 {% endblock %}
 
 {% block body %}
@@ -34,12 +33,6 @@
                     </div>
                 </div>
                 <div class="cart-side">
-                    <a href="{{path('clearCart')}}">
-                        <button class="clear-cart">
-                            <i class="far fa-times-circle"></i>
-                            Clear cart
-                        </button>
-                    </a>
                     {% set price = 0 %}
                     {% for prod in cart %}
                         {% set price = price + prod.sum %}
@@ -51,6 +44,13 @@
                             {{price}}
                         </span>
                     </p>
+                    <a href="{{path('clearCart')}}">
+                        <button class="clear-cart">
+                            <i class="far fa-times-circle"></i>
+                            Clear cart
+                        </button>
+                    </a>
+
                     <a href="#">
                         <button class="pay-proceed">
                             <i class="fas fa-money-bill-wave"></i>

@@ -59,8 +59,8 @@
 
             {% for key, hour in hours %}
                 <p>
-                    <span>{{key}}</span>
-                    <span>
+                    <span {% if key == "now"|date('l') %} class="today" {% endif %}>{{key}}</span>
+                    <span {% if key == "now"|date('l') %} class="today" {% endif %}>
                         {% if loop.last %}
                             Closed
                         {% else %}
