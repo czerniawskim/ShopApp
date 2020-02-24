@@ -285,7 +285,7 @@ class AppController extends AbstractController
         }
 
         $cart = $session->get('cart');
-        dump($cart);
+        
         return $this->render('app/cart.html.twig', [
             'search'=>$search->createView(),
             'cart'=>$cart
