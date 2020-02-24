@@ -373,7 +373,6 @@ class AdminController extends AbstractController
     public function deals(DealsRepository $dR)
     {
         $deals = $dR->findBy(array(), array('doneAt'=>'DESC'));
-        dump($deals);
 
         return $this->render('admin/deals.html.twig', [
             'deals'=>$deals
