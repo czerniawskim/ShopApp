@@ -5,7 +5,9 @@
 		<title>
 			{% block title %}{% endblock %}
 		</title>
-		{% block stylesheets %}{% endblock %}
+		{% block stylesheets %}
+			<link rel="stylesheet" href="/styles/app.css">
+		{% endblock %}
 	</head>
 	<body>
 		{% block body %}{% endblock %}

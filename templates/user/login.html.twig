@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Sign in to app
+{% endblock %}
+
+{% block body %}
+	<form action="{{ path('login') }}" method="POST">
+		<p class="tag">
+			Sign in
+		</p>
+		<div class="inpBox">
+			<label for="username">
+				Username
+			</label>
+			<input type="text" id="username" name="username" value="{{ username }}" autofocus required/>
+		</div>
+		<div class="inpBox">
+			<label for="password">
+				Password
+			</label>
+			<input type="password" id="password" class="pass" name="password" value="" required/>
+			<span class="showBtn">
+				Show
+			</span>
+		</div>
+		<div class="sub-box">
+			<label class="remember">
+				<input type="checkbox" name="_remember_me">
+				Remember me
+			</label>
+			<a href="" class="forgot-pass">
+				Forgot password?
+			</a>
+		</div>
+		<input type="hidden" name="csrf" value="{{ csrf_token('authenticate') }}">
+		<button id="submit-login" type="submit" class="signin-btn">
+			Sign in
+		</button>
+		<a href="{{ path('register', {'step': 1}) }}" class="reg-link">
+			Become member now
+		</a>
+		{% if error %}
+			<div class="alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+	</form>
+{% endblock %}
