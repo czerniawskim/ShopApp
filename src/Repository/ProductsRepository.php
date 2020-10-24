@@ -48,11 +48,14 @@ class ProductsRepository extends ServiceEntityRepository
 
     private function getBestRated()
     {
-        $data =  $this->createQueryBuilder('p')->getQuery()->getResult();
+        $data = $this->createQueryBuilder('p')->getQuery()->getResult();
         $rated = $rateSum = [];
 
         foreach ($data as $d) {
-            if (sizeof($d->getRating()) > 0) $rated[] = $d;
+            if (sizeof($d->getRating()) > 0) {
+                $rated[] = $d;
+            }
+
         }
         unset($data);
         unset($d);
@@ -60,7 +63,10 @@ class ProductsRepository extends ServiceEntityRepository
         foreach ($rated as $r) {
             $total = 0;
             $size = sizeof($r->getRating());
-            foreach ($r->getRating() as $rate) $total += $rate['grade'];
+            foreach ($r->getRating() as $rate) {
+                $total += $rate['grade'];
+            }
+
             $rateSum[] = ['row' => $r, 'total' => $total, 'amount' => $size, 'score' => $total / $size];
         }
 
@@ -88,26 +94,26 @@ class ProductsRepository extends ServiceEntityRepository
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    return $this->createQueryBuilder('p')
+    ->andWhere('p.exampleField = :val')
+    ->setParameter('val', $value)
+    ->orderBy('p.id', 'ASC')
+    ->setMaxResults(10)
+    ->getQuery()
+    ->getResult()
+    ;
     }
-    */
+     */
 
     /*
-    public function findOneBySomeField($value): ?Products
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+public function findOneBySomeField($value): ?Products
+{
+return $this->createQueryBuilder('p')
+->andWhere('p.exampleField = :val')
+->setParameter('val', $value)
+->getQuery()
+->getOneOrNullResult()
+;
+}
+ */
 }

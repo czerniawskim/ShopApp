@@ -25,6 +25,10 @@
   justify-content: space-between;
 }
 
+.home-section-elem:not(.list-1) {
+  display: none;
+}
+
 .product-image {
   margin-bottom: 0.75rem;
   width: 100%;
@@ -63,9 +67,10 @@
   font-weight: 600;
   margin: 0 1rem;
 }
-
-.list-2 {
-  display: none;
+.add-to-bag {
+  cursor: pointer;
+  font-weight: 600;
+  color: #8f2d56;
 }
 
 .nav-btn {

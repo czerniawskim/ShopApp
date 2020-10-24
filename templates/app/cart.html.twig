@@ -1,0 +1,18 @@
+{% extends "app/index.html.twig" %}
+
+{% block title %}
+	Cart |
+	{{app.session.get('bag')|length}}
+	items
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="/styles/app/cart.css">
+{% endblock %}
+
+{% block content %}
+	<pre>
+        {{ dump(bag) }}
+    </pre>
+{% endblock %}
