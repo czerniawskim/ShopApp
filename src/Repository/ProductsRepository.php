@@ -23,7 +23,7 @@ class ProductsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.sold', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }
@@ -32,7 +32,7 @@ class ProductsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.id', 'DESC')
-            ->setMaxResults(10)
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }
@@ -41,7 +41,7 @@ class ProductsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->orderBy('p.stock')
-            ->setMaxResults(10)
+            ->setMaxResults(15)
             ->getQuery()
             ->getResult();
     }
@@ -76,7 +76,7 @@ class ProductsRepository extends ServiceEntityRepository
 
         $rated = [];
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $rated[] = $rateSum[$i]['row'];
         }
 

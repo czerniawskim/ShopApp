@@ -1,4 +1,4 @@
-{% extends "app/index.html.twig" %}
+{% extends "app/_nav.html.twig" %}
 
 {% block title %}
 	Cart |
@@ -12,7 +12,39 @@
 {% endblock %}
 
 {% block content %}
-	<pre>
-        {{ dump(bag) }}
-    </pre>
+	<main class="cart-container">
+		<section class="cart-list">
+			{% set prices = [] %}
+			{% for elem in bag %}
+				<div class="cart-list-elem">
+					<img src="{{elem.product.images.0}}" alt="#{{elem.product.id}} preview" class="cart-img-preview">
+					<p class="cart-product-data">
+						<span class="product-name">{{elem.product.name}}</span>
+						<span class="product-price">
+							{{elem.product.price}}$
+						</span>
+					</p>
+					<input type="text" value="{{elem.amount}}" class="product-quant" readonly>
+				</div>
+				{% set prices = prices|merge([elem.amount * elem.product.price]) %}
+			{% endfor %}
+		</section>
+		<aside class="cart-side-panel">
+			<div class="suming-section">
+				{% set total = 0 %}
+				{% for price in prices %}
+					<p class="price-to-add">
+						+
+						{{price}}$
+					</p>
+					{% set total = total + price %}
+				{% endfor %}
+				<p class="total">
+					<b>Total:</b>
+					{{total}}$
+				</p>
+			</div>
+			<a href="#" class="cart-payment-link">Payment</a>
+		</aside>
+	</main>
 {% endblock %}

@@ -1,0 +1,105 @@
+body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.app-nav-bar {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 0;
+}
+body > main {
+  width: 90%;
+  height: 100%;
+  overflow: auto;
+  padding: 1rem 0.5rem;
+}
+.app-label {
+  color: #8f2d56;
+  align-self: center;
+  margin-bottom: 8rem;
+  font-size: 4rem;
+  font-weight: 600;
+  transform: rotate(-45deg);
+}
+.app-nav-bar a {
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app-nav-bar a:nth-of-type(2) {
+  margin: 2rem 0;
+}
+.app-nav-bar a#disabled {
+  pointer-events: none;
+  cursor: default;
+}
+.app-nav-bar svg {
+  fill: #8f2d56;
+  transform: scale(2);
+}
+.active {
+  position: relative;
+}
+.active svg {
+  fill: #fff;
+}
+.active::after {
+  content: "";
+  z-index: -1;
+  width: 85%;
+  height: 3.5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 16px 16px 0;
+  background-color: #8f2d56;
+}
+
+.login-link,
+.logout-link {
+  color: #8f2d56;
+  font-size: 1.25rem;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.search-form {
+  position: relative;
+  width: 50%;
+  height: 3rem;
+}
+.search-inp {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid #8f2d56;
+  color: #8f2d56;
+  outline: transparent;
+  padding: 0 3rem 0 0.5rem;
+}
+.search-inp::placeholder {
+  color: #8f2d56;
+}
+
+.search-sub {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  height: 100%;
+  width: 8%;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-icon {
+  transform: scale(1.5);
+  fill: #8f2d56;
+}

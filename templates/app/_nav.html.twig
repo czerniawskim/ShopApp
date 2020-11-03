@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link href="/styles/app/nav.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+	<nav class="app-nav-bar">
+		<span class="app-label">E</span>
+		<a href="{{path('home')}}" {% if app.request.attributes.get('_route') == "home" %} class="active" id="disabled" {% endif %}>
+			<svg class="home-icon" viewbox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+				<path d="M946.5 505L534.6 93.4a31.93 31.93 0 0 0-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z"></path>
+			</svg>
+		</a>
+		<a href="" {% if app.request.attributes.get('_route') == "" %} class="active" id="disabled" {% endif %}>
+			<svg class="categories-icon" viewbox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+				<path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"></path>
+			</svg>
+		</a>
+		<a href="{{path('cart')}}" {% if app.request.attributes.get('_route') == "cart" %} class="active" id="disabled" {% endif %}>
+			<svg stroke="currentColor" class="bag-icon" stroke-width="0" viewbox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+				<path d="M1 4h14v10a2 2 0 01-2 2H3a2 2 0 01-2-2V4zm7-2.5A2.5 2.5 0 005.5 4h-1a3.5 3.5 0 117 0h-1A2.5 2.5 0 008 1.5z"></path>
+			</svg>
+		</a>
+		{% if app.user %}
+			<span class="nav-user">
+				{{app.user.username}}
+				<svg stroke="currentColor" class="down-icon" stroke-width="0" viewbox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+					<path d="M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z"></path>
+				</svg>
+			</span>
+			<a href="{{path('logout')}}" class="logout-link">Logout</a>
+		{% else %}
+			<a href="{{path('login')}}" class="login-link">Login</a>
+		{% endif %}
+	</nav>
+
+	{% block content %}{% endblock %}
+{% endblock %}

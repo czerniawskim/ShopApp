@@ -1,99 +1,120 @@
-.home-content {
-  width: 100%;
-  padding: 1rem 2rem;
-}
 .home-section-label {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
+  margin: 1.2rem 0 0.75rem;
   font-weight: 600;
 }
-.home-section-label:not(:first-of-type) {
-  margin-top: 2rem;
-}
-
 .home-section-elems {
   display: flex;
-  justify-content: space-between;
+  width: 99%;
+  height: 60vh;
+  overflow: hidden;
   align-items: center;
-  width: 100%;
-  padding: 1.75rem 0;
 }
 .home-section-elem {
+  margin: 0 1.25rem;
+  width: 20%;
   height: 100%;
-  width: 17.5%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
-
+.home-section-elem:nth-child(1),
+.home-section-elem:nth-child(6),
+.home-section-elem:nth-child(11) {
+  margin-left: 0;
+}
+.home-section-elem:nth-child(5),
+.home-section-elem:nth-child(10),
+.home-section-elem:nth-child(15) {
+  margin-right: 0;
+}
 .home-section-elem:not(.list-1) {
   display: none;
 }
-
-.product-image {
-  margin-bottom: 0.75rem;
+.home-section-elem img {
   width: 100%;
+  height: 88%;
+  margin-bottom: 0.25rem;
+  border-radius: 8px 8px 0 0;
 }
 .elem-name {
-  display: block;
-  margin: 1rem 0;
-  width: 200px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  width: 100%;
 }
+
+.on-image-data {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88%;
+  padding: 1rem 0.5rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.data-top {
+  display: flex;
+  justify-content: space-between;
+}
+.price,
 .rating {
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.85rem;
+  background-color: #8f2d56;
+  color: #fff;
+  fill: #fff;
+  border-radius: 16px;
 }
-.price {
+.rating .star-icon {
+  margin-right: 0.25rem;
+}
+
+.elem-name {
+  color: #fff;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100%);
+  background-color: #8f2d56;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
-.star-icon {
+.adding svg {
   fill: #8f2d56;
-  margin-right: 0.35rem;
-}
-.adding {
-  display: flex;
-  align-items: center;
-}
-.minus-icon,
-.plus-icon {
-  fill: #8f2d56;
-  transform: scale(1.25);
   cursor: pointer;
 }
 .amount {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin: 0 1rem;
-}
-.add-to-bag {
-  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 1.35rem;
   font-weight: 600;
   color: #8f2d56;
+  cursor: default;
+}
+.add-to-bag {
+  font-weight: 600;
+  color: #8f2d56;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-.nav-btn {
-  height: 50px;
-  width: 50px;
-  border-radius: 100%;
-  border: none;
-  background-color: transparent;
-  box-shadow: 0 2px 12px rgba(64, 64, 64, 0.456);
-  cursor: pointer;
+.section-nav {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 6rem;
+  margin-left: 0.75rem;
 }
-.nav-btn svg {
-  transform: scale(1.25);
+.section-nav-elem {
+  transform: scale(1.75);
+  fill: rgb(91, 91, 91);
+  cursor: pointer;
+}
+.section-nav-elem.no-1 {
   fill: #8f2d56;
-}
-.nav-btn:disabled {
-  background-color: rgba(179, 179, 179, 0.49);
-  box-shadow: none;
-  cursor: not-allowed;
-}
-.nav-btn:disabled svg {
-  fill: #8f2d5685;
+  cursor: default;
 }

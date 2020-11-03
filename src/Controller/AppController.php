@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,12 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class AppController extends AbstractController
 {
     private $pr;
+    private $cr;
     private $em;
     private $session;
 
-    public function __construct(ProductsRepository $pr, EntityManagerInterface $em, SessionInterface $session)
+    public function __construct(ProductsRepository $pr, CategoriesRepository $cr, EntityManagerInterface $em, SessionInterface $session)
     {
         $this->pr = $pr;
+        $this->cr = $cr;
         $this->em = $em;
         $this->session = $session;
     }
@@ -30,6 +33,16 @@ class AppController extends AbstractController
     {
         return $this->render('app/home.html.twig', [
             'data' => $this->pr->getHomeData(),
+        ]);
+    }
+
+    /**
+     * @Route("/product/{id}", name="product", methods={"GET"})
+     */
+    public function product(int $id)
+    {
+        return $this->render('app/product.html.twig', [
+            'product' => $this->pr->findOneBy(['id' => $id]),
         ]);
     }
 
