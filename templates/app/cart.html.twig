@@ -14,31 +14,49 @@
 {% block content %}
 	<main class="cart-container">
 		<section class="cart-list">
+			<div class="list-top">
+				<input type="checkbox" class="check-all" id="all">
+				<span class="selected-amount">0 items selected</span>
+				<span class="delete-batch">Delete selected</span>
+			</div>
 			{% set prices = [] %}
 			{% for elem in bag %}
-				<div class="cart-list-elem">
+				<div class="cart-list-elem" data-id="{{elem.product.id}}">
+					<input type="checkbox" class="item-select">
 					<img src="{{elem.product.images.0}}" alt="#{{elem.product.id}} preview" class="cart-img-preview">
-					<p class="cart-product-data">
+					<div class="product-data">
 						<span class="product-name">{{elem.product.name}}</span>
-						<span class="product-price">
-							{{elem.product.price}}$
-						</span>
-					</p>
-					<input type="text" value="{{elem.amount}}" class="product-quant" readonly>
+						<p class="quant-price">
+							<span class="prod-quant">{{elem.amount}}
+								x
+							</span>
+							<span class="prod-price">${{elem.product.price}}</span>
+						</p>
+					</div>
+					<svg class="bag-item-remove" viewbox="0 0 24 24" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+						<path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+					</svg>
 				</div>
 				{% set prices = prices|merge([elem.amount * elem.product.price]) %}
+			{% else %}
+				<p class="no-items">There is nothing here</p>
+				<a href="{{path('home')}}">Explore products</a>
 			{% endfor %}
 		</section>
 		<aside class="cart-side-panel">
 			<div class="suming-section">
 				{% set total = 0 %}
-				{% for price in prices %}
-					<p class="price-to-add">
-						+
-						{{price}}$
-					</p>
-					{% set total = total + price %}
-				{% endfor %}
+				<div class="adding">
+					{% for price in prices %}
+						<p class="price-to-add">
+							<svg stroke="currentColor" class="plus-icon" stroke-width="0" viewbox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+								<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
+							</svg>
+							${{price}}
+						</p>
+						{% set total = total + price %}
+					{% endfor %}
+				</div>
 				<p class="total">
 					<b>Total:</b>
 					{{total}}$
@@ -47,4 +65,8 @@
 			<a href="#" class="cart-payment-link">Payment</a>
 		</aside>
 	</main>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="/js/cart.js"></script>
 {% endblock %}

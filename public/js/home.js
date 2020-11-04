@@ -63,6 +63,11 @@ function updateBag(amount, id) {
       if (xhr.status === 200) {
         amount.innerText = 1;
         console.log("Added to bag");
+        if (xhr.responseText === "Added")
+          document.getElementsByClassName("bag-counter")[0].innerHTML =
+            parseInt(
+              document.getElementsByClassName("bag-counter")[0].innerHTML
+            ) + 1;
       } else {
         alert("There was problem adding to bag. Reload page and try again.");
       }

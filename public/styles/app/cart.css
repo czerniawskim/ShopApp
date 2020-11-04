@@ -1,0 +1,116 @@
+.cart-container {
+  display: flex;
+}
+.cart-list {
+  width: 75%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+.list-top {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 1.5rem;
+}
+.check-all {
+  margin-right: 0.75rem;
+}
+.delete-batch {
+  margin: 0 0 0 auto;
+  cursor: pointer;
+  color: #8f2d56;
+  font-weight: 600;
+}
+.cart-list-elem {
+  width: 100%;
+  padding-right: 1.5rem;
+  height: 8rem;
+  display: flex;
+  align-items: center;
+}
+.cart-list-elem:not(:first-of-type),
+.cart-list-elem:not(:last-of-type) {
+  margin: 1.5rem 0;
+}
+.cart-list-elem img {
+  height: 100%;
+  margin: 0 0.75rem;
+}
+.product-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.quant-price {
+  font-size: 0.95rem;
+  color: rgb(91, 91, 91);
+  margin-top: 0.45rem;
+}
+.bag-item-remove {
+  margin: 0 0 0 auto;
+  transform: scale(1.75);
+  cursor: pointer;
+  fill: #8f2d56;
+}
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.cart-side-panel {
+  width: 25%;
+  height: 100%;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.suming-section {
+  height: 85%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 1rem;
+  margin-bottom: 2rem;
+}
+.adding {
+  width: 100%;
+  height: 95%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.price-to-add {
+  width: 50%;
+  color: rgb(91, 91, 91);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0;
+}
+.price-to-add svg {
+  fill: rgb(91, 91, 91);
+}
+.total {
+  border-top: 1px dashed rgb(91, 91, 91);
+  font-size: 1.25rem;
+  width: 100%;
+  text-align: right;
+  padding: 0.25rem 0;
+}
+.cart-payment-link {
+  padding: 0.75rem 2rem;
+  font-size: 1.5rem;
+  background-color: #8f2d56;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 8px;
+  border: none;
+}

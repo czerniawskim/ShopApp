@@ -38,6 +38,16 @@ body > main {
   pointer-events: none;
   cursor: default;
 }
+.app-nav-bar a:nth-of-type(3) {
+  position: relative;
+}
+.app-nav-bar .bag-counter {
+  position: absolute;
+  color: #fff;
+  font-size: 600;
+  z-index: 10;
+  top: 41.5%;
+}
 .app-nav-bar svg {
   fill: #8f2d56;
   transform: scale(2);

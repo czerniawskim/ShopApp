@@ -84,6 +84,10 @@
   padding: 0.5rem;
   border-radius: 8px;
 }
+.adding {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
 .adding svg {
   fill: #8f2d56;
   cursor: pointer;

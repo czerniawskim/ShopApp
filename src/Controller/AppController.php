@@ -76,7 +76,7 @@ class AppController extends AbstractController
                 $elem['amount'] = $elem['amount'] + $new['amount'];
                 $this->session->set('bag', $bag);
 
-                return new Response();
+                return new Response("Updated");
             }
         }
         $bag[] = [
@@ -84,6 +84,44 @@ class AppController extends AbstractController
             'amount' => (int) $new['amount'],
         ];
         $this->session->set('bag', $bag);
+        return new Response("Added");
+    }
+
+    /**
+     * @Route("/remove-bag-element", methods={"POST"})
+     */
+    public function removeBagElement(Request $request)
+    {
+        (int) $id = $request->request->get("item");
+        return new Response("Id: $id");
+        /* $bag = $this->session->get('bag');
+    $index = $this->findIndex($bag, $id);
+    if ($index !== null) {
+    unset($bag[$index]);
+    return new Response("Removed");
+    }
+
+    return new Response("Item not found"); */
+    }
+
+    /**
+     * @Route("/remove-batch", methods={"POST"})
+     */
+    public function removeBatchElements(Request $request)
+    {
+        $ids = $request->request->get("items");
+
         return new Response();
+    }
+
+    private function findIndex(array $bag, int $id)
+    {
+        foreach ($bag as $index => $b) {
+            if ($b->getId() === $id) {
+                return $index;
+            }
+        }
+
+        return null;
     }
 }
