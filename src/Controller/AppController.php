@@ -93,15 +93,15 @@ class AppController extends AbstractController
     public function removeBagElement(Request $request)
     {
         (int) $id = $request->request->get("item");
-        return new Response("Id: $id");
-        /* $bag = $this->session->get('bag');
-    $index = $this->findIndex($bag, $id);
-    if ($index !== null) {
-    unset($bag[$index]);
-    return new Response("Removed");
-    }
+        $bag = $this->session->get('bag');
+        $index = $this->findIndex($bag, $id);
+        if ($index !== null) {
+            unset($bag[$index]);
+            $this->session->set('bag', $bag);
+            return new Response("Removed");
+        }
 
-    return new Response("Item not found"); */
+        return new Response("Item not found");
     }
 
     /**
@@ -117,7 +117,7 @@ class AppController extends AbstractController
     private function findIndex(array $bag, int $id)
     {
         foreach ($bag as $index => $b) {
-            if ($b->getId() === $id) {
+            if ($b['product']->getId() === $id) {
                 return $index;
             }
         }

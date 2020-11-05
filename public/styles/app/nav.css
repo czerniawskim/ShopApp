@@ -74,8 +74,19 @@ body > main {
 .logout-link {
   color: #8f2d56;
   font-size: 1.25rem;
-  margin-top: auto;
   margin-bottom: 0;
+  height: auto !important;
+}
+.login-link {
+  margin-top: auto;
+}
+.nav-user {
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+  height: auto !important;
 }
 
 .search-form {

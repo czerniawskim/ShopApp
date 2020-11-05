@@ -21,7 +21,7 @@
 			</div>
 			{% set prices = [] %}
 			{% for elem in bag %}
-				<div class="cart-list-elem" data-id="{{elem.product.id}}">
+				<div class="cart-list-elem" data-id="{{elem.product.id}}" id="{{loop.index0}}">
 					<input type="checkbox" class="item-select">
 					<img src="{{elem.product.images.0}}" alt="#{{elem.product.id}} preview" class="cart-img-preview">
 					<div class="product-data">
@@ -48,7 +48,7 @@
 				{% set total = 0 %}
 				<div class="adding">
 					{% for price in prices %}
-						<p class="price-to-add">
+						<p class="price-to-add" id="{{loop.index0}}">
 							<svg stroke="currentColor" class="plus-icon" stroke-width="0" viewbox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
 								<path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
 							</svg>
