@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -53,6 +54,26 @@ class AppController extends AbstractController
     {
         return $this->render('app/cart.html.twig', [
             'bag' => $this->session->get('bag'),
+        ]);
+    }
+
+    /**
+     * @Route("/categories", name="categories", methods={"GET"})
+     */
+    public function categories()
+    {
+        return $this->render('app/categories.html.twig', [
+            'indexes' => $this->cr->getCategories(),
+        ]);
+    }
+
+    /**
+     * @Route("/c/{category}", name="category", methods={"GET"})
+     */
+    public function category(string $category, PaginatorInterface $paginator, Request $request)
+    {
+        return $this->render('app/category.html.twig', [
+            'products' => $paginator->paginate($this->cr->findOneBy(['name' => $category])->getProducts(), $request->query->getInt("page", 1), 15),
         ]);
     }
 

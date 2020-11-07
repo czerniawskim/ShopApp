@@ -19,12 +19,21 @@ class CategoriesRepository extends ServiceEntityRepository
         parent::__construct($registry, Categories::class);
     }
 
-    public function getNames()
+    public function getCategories()
     {
-        return $this->createQueryBuilder('c')
+        $data = $this->createQueryBuilder('c')
             ->select('c.name')
+            ->orderBy("c.name")
             ->getQuery()
             ->getResult();
+
+        $grouped = [];
+
+        foreach ($data as $d) {
+            $grouped[strtolower(substr($d['name'], 0, 1))][] = $d;
+        }
+
+        return $grouped;
     }
 
     // /**

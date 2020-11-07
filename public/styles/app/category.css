@@ -1,0 +1,119 @@
+.category-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.category-item {
+  margin: 1.5rem 0;
+  width: 18%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.category-item:nth-child(1),
+.category-item:nth-child(6),
+.category-item:nth-child(11),
+.category-item:nth-child(16) {
+  margin-left: 0;
+}
+.category-item:nth-child(5),
+.category-item:nth-child(10),
+.category-item:nth-child(15),
+.category-item:nth-child(20) {
+  margin-right: 0;
+}
+.category-item img {
+  width: 100%;
+  height: 88%;
+  margin-bottom: 0.25rem;
+  border-radius: 8px 8px 0 0;
+}
+.elem-name {
+  width: 100%;
+}
+
+.on-image-data {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88%;
+  padding: 1rem 0.5rem 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.data-top {
+  display: flex;
+  justify-content: space-between;
+}
+.price,
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.85rem;
+  background-color: #8f2d56;
+  color: #fff;
+  fill: #fff;
+  border-radius: 16px;
+}
+.rating .star-icon {
+  margin-right: 0.25rem;
+}
+
+.elem-name {
+  color: #fff;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100%);
+  background-color: #8f2d56;
+  padding: 0.5rem;
+  border-radius: 8px;
+}
+.adding {
+  margin-top: 0.5rem;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+}
+.adding svg {
+  fill: #8f2d56;
+  cursor: pointer;
+}
+.amount {
+  margin: 0 0.5rem;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #8f2d56;
+  cursor: default;
+}
+.add-to-bag {
+  margin-top: 0.5rem;
+  font-weight: 600;
+  color: #8f2d56;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.pagination {
+  width: 75%;
+  margin: 0.75rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination span {
+  padding: 0.5rem 0.75rem;
+  font-size: 1.15rem;
+}
+.current {
+  font-size: 1.35rem;
+  background-color: #8f2d56;
+  color: #fff;
+  font-weight: 600;
+}

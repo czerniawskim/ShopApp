@@ -1,0 +1,28 @@
+{% extends "app/_nav.html.twig" %}
+
+{% block title %}
+	Categories
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="/styles/app/categories.css">
+{% endblock %}
+
+{% block content %}
+	<main class="categories-container">
+		{% include "app/_search.html.twig" with {"fill": ""}  %}
+		{% for index, categories in indexes %}
+			<div class="index-group">
+				<p class="group-label">{{index|capitalize}}</p>
+				<div class="links-group">
+					{% for category in categories %}
+						<a href="{{path('category', {'category': category.name})}}" class="category-link">
+							{{category.name|capitalize}}
+						</a>
+					{% endfor %}
+				</div>
+			</div>
+		{% endfor %}
+	</main>
+{% endblock %}

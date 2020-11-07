@@ -11,7 +11,7 @@
 
 {% block content %}
 	<main class="home-content">
-		{% include "app/_search.html.twig" %}
+		{% include "app/_search.html.twig" with {"fill": ""} %}
 		{% for key, vals in data %}
 			<p class="home-section-label">{{key}}</p>
 			<div class="home-section-elems" data-section="{{key}}">
