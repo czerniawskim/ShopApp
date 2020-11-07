@@ -20,7 +20,7 @@ body > main {
 .app-label {
   color: #8f2d56;
   align-self: center;
-  margin-bottom: 8rem;
+  margin-bottom: 6.5rem;
   font-size: 4rem;
   font-weight: 600;
   transform: rotate(-45deg);
@@ -72,21 +72,12 @@ body > main {
 
 .login-link,
 .logout-link {
-  color: #8f2d56;
-  font-size: 1.25rem;
-  margin-bottom: 0;
-  height: auto !important;
-}
-.login-link {
+  fill: #8f2d56;
   margin-top: auto;
+  margin-bottom: 0;
 }
 .nav-user {
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  font-size: 1.25rem;
-  height: auto !important;
+  margin-top: 2rem;
 }
 
 .search-form {

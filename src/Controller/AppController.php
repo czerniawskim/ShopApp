@@ -78,6 +78,17 @@ class AppController extends AbstractController
     }
 
     /**
+     * @Route("/search", name="search", methods={"GET"})
+     */
+    public function search(Request $request, PaginatorInterface $paginator)
+    {
+        $query = $request->query->get("query");
+        return $this->render('app/queried.html.twig', [
+            'results' => ['categories' => $this->cr->getQueried($query), 'products' => $paginator->paginate($this->pr->getQueried($query), $request->query->getInt("page", 1), 15)],
+        ]);
+    }
+
+    /**
      * @Route("/update-cart", methods={"POST"})
      */
     public function updateCart(Request $request)

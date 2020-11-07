@@ -36,6 +36,17 @@ class CategoriesRepository extends ServiceEntityRepository
         return $grouped;
     }
 
+    public function getQueried(string $query)
+    {
+        return $this->createQueryBuilder('c')
+            ->select("c.name")
+            ->andWhere("c.name LIKE :query")
+            ->setParameter(":query", "%$query%")
+            ->orderBy("c.name")
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Categories[] Returns an array of Categories objects
     //  */

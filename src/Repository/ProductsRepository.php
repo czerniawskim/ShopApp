@@ -88,6 +88,16 @@ class ProductsRepository extends ServiceEntityRepository
         return ["Bestsellers" => $this->getBestsellers(), "New products" => $this->getNewProducts(), "Get untill available" => $this->getLowStock(), "Best rated" => $this->getBestRated()];
     }
 
+    public function getQueried(string $query)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere("p.name LIKE :query or p.description LIKE :query")
+            ->setParameter(":query", "%$query%")
+            ->orderBy("p.name")
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Products[] Returns an array of Products objects
     //  */
