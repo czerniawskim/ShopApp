@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Board in to app
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="/styles/user/register.css">
+{% endblock %}
+
+{% block body %}
+	{{form_start(register)}}
+	<p class="tag">Board in</p>
+	<div class="inpBox">
+		{{form_label(register.username)}}
+		{{form_widget(register.username)}}
+	</div>
+	<div class="inpBox">
+		{{form_label(register.password)}}
+		{{form_widget(register.password)}}
+	</div>
+	<div class="inpBox">
+		{{form_label(register.email)}}
+		{{form_widget(register.email)}}
+	</div>
+	<div class="inpBox address">
+		{{form_label(register.address)}}
+		{{form_widget(register.address)}}
+	</div>
+	{{form_widget(register.submit)}}
+	<a href="{{path('login')}}" class="login-link">Already a member?</a>
+	{% if error %}
+		<div class="alert-danger">{{error}}</div>
+	{% endif %}
+	{{form_end(register)}}
+{% endblock %}

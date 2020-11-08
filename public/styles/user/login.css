@@ -1,0 +1,109 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: linear-gradient(
+    306deg,
+    rgba(143, 45, 86, 1) 0%,
+    rgba(250, 154, 193, 1) 100%
+  );
+  padding: 10vh 25vw;
+}
+form {
+  width: 50vw;
+  height: 80vh;
+  background-color: #fff;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 8px 24px rgb(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tag {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 3.5rem 0 2.5rem;
+  color: #8f2d56;
+}
+.inpBox {
+  width: 75%;
+  height: 12%;
+  position: relative;
+}
+.inpBox:first-of-type {
+  margin-bottom: 1.25rem;
+}
+.inpBox label {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.75rem;
+  font-size: 0.85rem;
+  color: #8f2d56;
+}
+.inpBox input {
+  width: 100%;
+  height: 100%;
+  padding: 1.25rem 0.75rem 0;
+  font-size: 1.05rem;
+  border-radius: 16px;
+  border: 1px solid #8f2d56;
+  outline: transparent;
+  color: #8f2d56;
+}
+input[type="password"] {
+  padding-right: 3.25rem;
+}
+.showBtn {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.25rem;
+  cursor: pointer;
+  fill: #8f2d56;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3%;
+  transform: scale(1.5);
+}
+
+.sub-box {
+  width: 75%;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.remember {
+  cursor: pointer;
+}
+.remember input {
+  margin-right: 0.35rem;
+}
+
+.signin-btn {
+  padding: 1rem 2rem;
+  margin: 0.5rem 0 1rem;
+  font-size: 1.25rem;
+  background-color: #8f2d56;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgb(0, 0, 0, 0.35);
+  outline: transparent;
+}
+
+.reg-link {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  color: #8f2d56;
+}
+
+.alert-danger {
+  margin-top: 1.5rem;
+  padding: 1rem 2.5rem;
+  background-color: red;
+  color: #fff;
+}
