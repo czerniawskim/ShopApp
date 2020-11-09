@@ -1,0 +1,144 @@
+{% extends "app/_nav.html.twig" %}
+
+{% block title %}
+	Your profile
+{% endblock %}
+
+{% block stylesheets %}
+	{{parent()}}
+	<link rel="stylesheet" href="/styles/user/profile.css">
+{% endblock %}
+
+{% block content %}
+	<main class="profile-container">
+		<aside class="profile-side-panel">
+			<div class="username">
+				<p class="elem-label">Username</p>
+				<p class="elem-data">{{app.user.username}}</p>
+			</div>
+			<div class="role">
+				<p class="elem-label">Highest role</p>
+				<p class="elem-data">{{app.user.roles|last|split("_").1|lower|capitalize}}</p>
+			</div>
+			<div class="e-mail">
+				<p class="elem-label">E-mail</p>
+				<p class="elem-data">{{app.user.email}}</p>
+			</div>
+			<div class="address">
+				<p class="elem-label">Address</p>
+				<p class="elem-data">
+					{{app.user.address.street}},
+					{{app.user.address.zip}}
+					{{app.user.address.city}}
+				</p>
+			</div>
+			<div class="deals">
+				<p class="elem-label">Deals</p>
+				<p class="elem-data">{{app.user.deals|length}}</p>
+			</div>
+			<div class="favourites">
+				<p class="elem-label">Favourites</p>
+				<p class="elem-data">{{app.user.favourites|length}}</p>
+			</div>
+		</aside>
+		<section class="profile-data">
+			<div class="top-nav">
+				<span class="deals current">Deals</span>
+				<span class="favs">Favourites</span>
+			</div>
+			<div class="deals-cont">
+				{% for deal in app.user.deals %}
+					<details class="deal-elem">
+						<summary>
+							<span class="date">{{deal.madeAt|date("D, F d, Y")}}[#{{deal.id}}]</span>
+							<span class="total">${{deal.total}}</span>
+						</summary>
+						<div class="prod-list">
+							{% for prod in deal.list %}
+								<div class="prod-data">
+									<img src="{{prod.item.images.0}}" alt="prod">
+									<p class="quant-price">
+										<span class="prod-quant">{{prod.quant}}
+											x
+										</span>
+										<span class="prod-price">${{prod.item.price}}</span>
+									</p>
+									<p class="total">${{prod.quant * prod.item.price}}</p>
+								</div>
+							{% endfor %}
+							<p class="total">
+								<b>Total:</b>
+								${{deal.total}}
+							</p>
+						</div>
+						<div class="payment">
+							<p class="label">Payment</p>
+							<p class="method">
+								<span>Method:</span>
+								<span>{{deal.payment.method}}</span>
+							</p>
+							{% if deal.payment.method in ["card", "transfer"] %}
+								<p class="source">
+									<span>
+										{% if deal.payment.method == "card" %}
+											Card no.:
+										{% else %}
+											Account:
+										{% endif %}
+									</span>
+									<span>
+										****
+										{{deal.payment.source[3:]}}
+									</span>
+								</p>
+							{% endif %}
+							<p class="payed">
+								<span>Payed:</span>
+								<span>{{deal.payment.payed}}</span>
+							</p>
+							<p class="deliv-date">
+								<span>Delivery date:</span>
+								<span>{{deal.delivery.date|date("D, M d")}}</span>
+							</p>
+							<p class="deliv-meth">
+								<span>Delivery method:</span>
+								<span>{{deal.delivery.way}}</span>
+							</p>
+							<p class="bill-type">
+								<span>Bill type:</span>
+								<span>Billd</span>
+							</p>
+						</div>
+						<div class="bill-data">
+							<p class="name">
+								<span>Name:</span>
+								<span>
+									{{deal.buyer.name.0|capitalize}}
+									{{deal.buyer.name.1|capitalize}}
+								</span>
+							</p>
+							<p class="address">
+								<span>Address:</span>
+								<span>
+									{{deal.buyer.address.street}},
+									{{deal.buyer.address.zip}}
+									{{deal.buyer.address.city}}
+								</span>
+							</p>
+							<p class="email">
+								<span>E-mail:</span>
+								<span>{{deal.buyer.email}}</span>
+							</p>
+						</div>
+					</details>
+				{% else %}
+					<div class="empty">
+						<p class="txt">So empty here</p>
+						<a href="{{path('home')}}">Find something to buy</a>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="favs-cont"></div>
+		</section>
+	</main>
+{% endblock %}

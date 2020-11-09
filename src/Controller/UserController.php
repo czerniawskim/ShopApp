@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Form\RegisterType;
 use App\Repository\UserRepository;
+use App\Services\Manipulations;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\LogoutException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
@@ -26,6 +27,10 @@ class UserController extends AbstractController
      */
     public function login(AuthenticationUtils $authenticationUtils)
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home', []);
+        }
+
         return $this->render('user/login.html.twig', [
             'error' => $authenticationUtils->getLastAuthenticationError(),
             'username' => $authenticationUtils->getLastUsername(),
@@ -37,6 +42,10 @@ class UserController extends AbstractController
      */
     public function register(Request $request, string $error = "", UserRepository $ur, UserPasswordEncoderInterface $encoder)
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('home', []);
+        }
+
         $register = $this->createForm(RegisterType::class);
         $register->handleRequest($request);
 
@@ -46,7 +55,8 @@ class UserController extends AbstractController
             if (filter_var($user->getEmail(), FILTER_VALIDATE_EMAIL)) {
                 if (!$ur->checkRegister($user->getUsername(), $user->getEmail())) {
                     $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
-                    $user->setRoles(["User"]);
+                    $user->setRoles(["ROLE_USER"]);
+                    $user->setAddress(Manipulations::fixAddress($user->getAddress()));
 
                     $this->em->persist($user);
                     $this->em->flush();
@@ -71,9 +81,34 @@ class UserController extends AbstractController
      */
     public function logout()
     {
-        if ($this->isGranted("USER")) {
-            return $this->redirectToRoute('home', []);
+        return $this->redirectToRoute('home', []);
+    }
+
+    /**
+     * @Route("/profile/{username}", name="profile", methods={"GET"})
+     */
+    public function profile(string $username)
+    {
+        if ($username !== $this->getUser()->getUsername()) {
+            return $this->redirectToRoute('profile', ['username' => $this->getUser()->getUsername()]);
         }
-        throw new LogoutException("You are not logged in");
+
+        return $this->render('user/profile.html.twig', []);
+    }
+
+    /**
+     * @Route("/add-to-favs", methods={"POST"})
+     */
+    public function addToFavs(Request $request)
+    {
+        return new Response();
+    }
+
+    /**
+     * @Route("/remove-from-favs", methods={"POST"})
+     */
+    public function removeFromFavs(Request $request)
+    {
+        return new Response();
     }
 }

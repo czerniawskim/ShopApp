@@ -51,9 +51,20 @@ class User implements UserInterface
      */
     private $deals;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Products::class)
+     */
+    private $favourites;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $name = [];
+
     public function __construct()
     {
         $this->deals = new ArrayCollection();
+        $this->favourites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,6 +188,44 @@ class User implements UserInterface
                 $deal->setBuyer(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Products[]
+     */
+    public function getFavourites(): Collection
+    {
+        return $this->favourites;
+    }
+
+    public function addFavourite(Products $favourite): self
+    {
+        if (!$this->favourites->contains($favourite)) {
+            $this->favourites[] = $favourite;
+        }
+
+        return $this;
+    }
+
+    public function removeFavourite(Products $favourite): self
+    {
+        if ($this->favourites->contains($favourite)) {
+            $this->favourites->removeElement($favourite);
+        }
+
+        return $this;
+    }
+
+    public function getName(): ?array
+    {
+        return $this->name;
+    }
+
+    public function setName(?array $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CategoriesRepository;
 use App\Repository\ProductsRepository;
+use App\Services\Manipulations;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -126,7 +127,7 @@ class AppController extends AbstractController
     {
         (int) $id = $request->request->get("item");
         $bag = $this->session->get('bag');
-        $index = $this->findIndex($bag, $id);
+        $index = Manipulations::findIndex($bag, $id);
         if ($index !== null) {
             unset($bag[$index]);
             $this->session->set('bag', $bag);
@@ -141,19 +142,10 @@ class AppController extends AbstractController
      */
     public function removeBatchElements(Request $request)
     {
+
+        // TODO
         $ids = $request->request->get("items");
 
         return new Response();
-    }
-
-    private function findIndex(array $bag, int $id)
-    {
-        foreach ($bag as $index => $b) {
-            if ($b['product']->getId() === $id) {
-                return $index;
-            }
-        }
-
-        return null;
     }
 }

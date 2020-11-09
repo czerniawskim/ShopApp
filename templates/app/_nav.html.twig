@@ -15,7 +15,7 @@
 				<path d="M946.5 505L534.6 93.4a31.93 31.93 0 0 0-45.2 0L77.5 505c-12 12-18.8 28.3-18.8 45.3 0 35.3 28.7 64 64 64h43.4V908c0 17.7 14.3 32 32 32H448V716h112v224h265.9c17.7 0 32-14.3 32-32V614.3h43.4c17 0 33.3-6.7 45.3-18.8 24.9-25 24.9-65.5-.1-90.5z"></path>
 			</svg>
 		</a>
-		<a href="{{path('categories')}}" {% if app.request.attributes.get('_route') == "" %} class="active" id="disabled" {% endif %}>
+		<a href="{{path('categories')}}" {% if app.request.attributes.get('_route') == "categories" %} class="active" id="disabled" {% endif %}>
 			<svg class="categories-icon" viewbox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
 				<path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 0 0-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"></path>
 			</svg>
@@ -27,7 +27,7 @@
 			</svg>
 		</a>
 		{% if app.user %}
-			<a href="" {% if app.request.attributes.get('_route') == "" %} class="nav-user active" id="disabled" {% else %} class="nav-user" {% endif %}>
+			<a href="{{path('profile', {'username': app.user.username})}}" {% if app.request.attributes.get('_route') == "profile" %} class="nav-user active" id="disabled" {% else %} class="nav-user" {% endif %}>
 				<svg stroke="currentColor" class="user-icon" stroke-width="0" viewbox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
 					<path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm89.6 32h-16.7c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16h-16.7C60.2 288 0 348.2 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-74.2-60.2-134.4-134.4-134.4z"></path>
 				</svg>

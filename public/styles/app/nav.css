@@ -10,6 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 2.25rem 0;
+  background-color: #8f2d56;
 }
 body > main {
   width: 90%;
@@ -18,7 +19,7 @@ body > main {
   padding: 1rem 0.5rem;
 }
 .app-label {
-  color: #8f2d56;
+  color: #fff;
   align-self: center;
   margin-bottom: 6.5rem;
   font-size: 4rem;
@@ -43,36 +44,37 @@ body > main {
 }
 .app-nav-bar .bag-counter {
   position: absolute;
-  color: #fff;
+  color: #8f2d56;
   font-size: 600;
   z-index: 10;
   top: 41.5%;
 }
 .app-nav-bar svg {
-  fill: #8f2d56;
+  fill: #fff;
   transform: scale(2);
+  z-index: 2;
 }
 .active {
   position: relative;
 }
 .active svg {
-  fill: #fff;
+  fill: #8f2d56;
 }
 .active::after {
   content: "";
-  z-index: -1;
-  width: 85%;
+  z-index: 1;
+  width: 88%;
   height: 3.5rem;
   position: absolute;
   top: 0;
-  left: 0;
-  border-radius: 0 16px 16px 0;
-  background-color: #8f2d56;
+  right: 0;
+  border-radius: 16px 0 0 16px;
+  background-color: #fff;
 }
 
 .login-link,
 .logout-link {
-  fill: #8f2d56;
+  fill: #fff;
   margin-top: auto;
   margin-bottom: 0;
 }
